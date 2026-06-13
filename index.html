@@ -10,92 +10,106 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;backgrou
 :root{
   --bg:#f5f5f3;--bg1:#ffffff;--bg2:#f1efe8;--bg3:#e8e6df;
   --t1:#1a1a18;--t2:#5f5e5a;--t3:#888780;
-  --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.18);
-  --r:8px;--rl:12px;
+  --border:rgba(0,0,0,0.1);--border2:rgba(0,0,0,0.2);
+  --r:8px;--rl:12px;--accent:#534AB7;
 }
 @media(prefers-color-scheme:dark){
   body{background:#1a1a18;color:#e8e6df}
-  :root{--bg:#1a1a18;--bg1:#242422;--bg2:#2c2c2a;--bg3:#383836;--t1:#e8e6df;--t2:#888780;--t3:#5f5e5a;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.15)}
+  :root{--bg:#1a1a18;--bg1:#242422;--bg2:#2c2c2a;--bg3:#383836;--t1:#e8e6df;--t2:#888780;--t3:#5f5e5a;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.18)}
 }
-button{font-family:inherit;cursor:pointer;font-size:14px}
+button{font-family:inherit;cursor:pointer;font-size:14px;transition:opacity .15s}
+button:hover{opacity:.8}
 input,select,textarea{font-family:inherit;background:var(--bg1);color:var(--t1);border:0.5px solid var(--border2);border-radius:var(--r);outline:none;font-size:14px}
-input:focus,select:focus,textarea:focus{border-color:#534AB7;box-shadow:0 0 0 2px #534AB722}
-a{color:inherit;text-decoration:none}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px #534AB722}
+input::placeholder{color:var(--t3)}
 .app{max-width:760px;margin:0 auto;padding:0 16px 80px}
-.header{padding:22px 0 14px;border-bottom:0.5px solid var(--border);margin-bottom:0}
-.header h1{font-size:20px;font-weight:500;display:flex;align-items:center;gap:8px}
-.header .sub{font-size:12px;color:var(--t2);margin-top:3px}
-.tabs{display:flex;gap:0;border-bottom:0.5px solid var(--border);margin-bottom:20px;overflow-x:auto}
-.tab{padding:11px 18px;font-size:14px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--t2);font-weight:400;white-space:nowrap;margin-bottom:-1px;transition:color .15s}
+.header{padding:20px 0 14px}
+.header h1{font-size:20px;font-weight:500}
+.header .sub{font-size:12px;color:var(--t2);margin-top:2px}
+.tabs{display:flex;border-bottom:0.5px solid var(--border);margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab{padding:10px 16px;font-size:14px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--t2);white-space:nowrap;margin-bottom:-1px;font-weight:400}
 .tab.active{border-bottom-color:var(--t1);color:var(--t1);font-weight:500}
-.tab:hover{color:var(--t1)}
 .card{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--rl);padding:14px 18px;margin-bottom:10px}
-.card:last-child{margin-bottom:0}
 .tbl{width:100%;border-collapse:collapse}
-.tbl th{padding:9px 14px;text-align:left;font-weight:500;color:var(--t2);font-size:12px;background:var(--bg2);border-bottom:0.5px solid var(--border)}
+.tbl th{padding:8px 12px;text-align:left;font-weight:500;color:var(--t2);font-size:12px;background:var(--bg2);border-bottom:0.5px solid var(--border)}
+.tbl td{padding:8px 12px;font-size:13px;border-top:0.5px solid var(--border)}
+.tbl tr:nth-child(even) td{background:var(--bg2)}
 .tbl th.r,.tbl td.r{text-align:right}
 .tbl th.c,.tbl td.c{text-align:center}
-.tbl td{padding:9px 14px;font-size:13px;border-top:0.5px solid var(--border)}
-.tbl tr:nth-child(even) td{background:var(--bg2)}
-.badge{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;font-weight:500}
-.btn{padding:7px 16px;border-radius:var(--r);border:0.5px solid var(--border2);background:transparent;color:var(--t1);transition:background .15s}
-.btn:hover{background:var(--bg2)}
-.btn.primary{background:#534AB7;color:#fff;border-color:#534AB7}
-.btn.primary:hover{background:#3C3489}
+.badge{display:inline-block;font-size:11px;border-radius:4px;padding:2px 7px;font-weight:500;line-height:1.6}
+.btn{padding:7px 16px;border-radius:var(--r);border:0.5px solid var(--border2);background:transparent;color:var(--t1)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.danger{color:#D85A30;border-color:#D85A30}
 .pill{padding:5px 14px;border-radius:20px;font-size:13px;border:0.5px solid var(--border2);background:transparent;color:var(--t2)}
 .pill.active{border:none;color:#fff;font-weight:500}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.stat{background:var(--bg2);border-radius:var(--r);padding:12px 14px;text-align:center}
-.stat .label{font-size:11px;color:var(--t2);margin-bottom:4px}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.stat{background:var(--bg2);border-radius:var(--r);padding:12px;text-align:center}
+.stat .label{font-size:11px;color:var(--t2);margin-bottom:3px}
 .stat .value{font-size:22px;font-weight:500}
 .bar-wrap{background:var(--bg3);border-radius:4px;height:5px;overflow:hidden;margin:6px 0 10px}
 .bar{height:100%;transition:width .5s ease}
-.meta{display:flex;gap:16px;font-size:12px;color:var(--t2);flex-wrap:wrap}
+.meta{display:flex;gap:14px;font-size:12px;color:var(--t2);flex-wrap:wrap}
 .meta b{color:var(--t1);font-weight:500}
-.clickable{cursor:pointer}
-.clickable:hover{opacity:.75}
-.back-btn{display:inline-flex;align-items:center;gap:6px;color:var(--t2);font-size:13px;margin-bottom:16px;background:none;border:none;padding:0;cursor:pointer}
-.back-btn:hover{color:var(--t1)}
-.highlight td{background:#534AB71a!important}
-.dnf-badge{font-size:11px;background:#D85A3022;color:#D85A30;border-radius:4px;padding:2px 8px;cursor:help}
-.team-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;border-radius:4px;padding:3px 8px;font-weight:500}
-.nav-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.pos-badge{display:inline-block;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:500;text-align:center;line-height:22px}
-.empty-state{text-align:center;padding:40px 20px;color:var(--t2)}
-.feed-msg{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--rl);padding:12px 16px;margin-bottom:10px}
-.feed-msg .who{font-size:12px;font-weight:500;margin-bottom:4px}
-.feed-msg .when{font-size:11px;color:var(--t3);margin-left:8px;font-weight:400}
-.feed-msg .text{font-size:14px;line-height:1.5;color:var(--t1)}
-.compose{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--rl);padding:14px 16px;margin-bottom:20px}
-.race-item{border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:12px}
-.race-header{padding:10px 16px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
-.race-header:hover{background:var(--bg3)}
-.race-body{padding:0}
-.chevron{transition:transform .2s;font-size:12px;color:var(--t2)}
+.back-btn{display:inline-flex;align-items:center;gap:5px;color:var(--t2);font-size:13px;margin-bottom:14px;background:none;border:none;padding:0}
+.nav-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.race-item{border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden;margin-bottom:10px}
+.race-hdr{padding:12px 16px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;gap:12px}
+.race-hdr:hover{background:var(--bg3)}
+.race-hdr-left{flex:1;min-width:0}
+.race-title{font-weight:500;font-size:14px}
+.race-meta{font-size:11px;color:var(--t2);margin-top:2px}
+.race-status{font-size:11px;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.status-done{background:#1D9E7522;color:#1D9E75}
+.status-partial{background:#BA751722;color:#BA7517}
+.status-empty{background:var(--bg3);color:var(--t3)}
+.chevron{font-size:11px;color:var(--t2);transition:transform .2s;flex-shrink:0}
 .chevron.open{transform:rotate(180deg)}
-.dnf-list{font-size:12px;color:#D85A30;margin-top:3px}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
-.modal{background:var(--bg1);border-radius:var(--rl);padding:20px;width:100%;max-width:480px;max-height:90vh;overflow-y:auto}
-.modal h2{font-size:16px;font-weight:500;margin-bottom:16px}
+.section-label{font-size:11px;font-weight:600;color:var(--t2);letter-spacing:.05em;padding:10px 14px 4px;background:var(--bg2);border-top:0.5px solid var(--border)}
+.slot-row{display:flex;align-items:center;gap:10px;padding:7px 14px;border-top:0.5px solid var(--border)}
+.slot-row:nth-child(even){background:var(--bg2)}
+.slot-pts{font-size:12px;color:var(--t2);min-width:36px;text-align:right}
+.slot-pos{font-size:12px;color:var(--t3);min-width:28px}
+.slot-input{flex:1;padding:5px 8px;font-size:13px;border-radius:6px}
+.slot-rider{flex:1;font-size:13px;font-weight:400}
+.slot-mgr{margin-left:6px}
+.highlight td{background:#534AB71a!important}
+.dnf-badge{font-size:11px;background:#D85A3022;color:#D85A30;border-radius:4px;padding:2px 7px;cursor:help;white-space:nowrap}
+.jersey{width:26px;height:26px;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;position:relative;overflow:hidden;cursor:pointer}
+.jersey input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.jersey img{width:100%;height:100%;object-fit:cover}
+.jersey-edit-wrap{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.jersey-abbr{font-size:11px;color:var(--t2)}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:100;padding:16px}
+.modal{background:var(--bg1);border-radius:var(--rl);padding:20px;width:100%;max-width:500px;max-height:92vh;overflow-y:auto}
+.modal h2{font-size:16px;font-weight:500;margin-bottom:4px}
+.modal .modal-sub{font-size:12px;color:var(--t2);margin-bottom:16px}
 .form-row{margin-bottom:12px}
 .form-row label{display:block;font-size:12px;color:var(--t2);margin-bottom:4px}
-.form-row input,.form-row select,.form-row textarea{width:100%;padding:8px 10px}
-.form-row textarea{min-height:80px;resize:vertical}
-.result-entry{display:flex;gap:8px;align-items:center;margin-bottom:6px}
-.result-entry input{flex:1;padding:6px 8px}
-.result-entry .pos-label{font-size:12px;color:var(--t2);min-width:24px}
-hr{border:none;border-top:0.5px solid var(--border);margin:12px 0}
-.jersey{width:22px;height:22px;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;vertical-align:middle;margin-right:4px;flex-shrink:0;cursor:pointer;position:relative}
-.jersey input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.jersey img{width:100%;height:100%;object-fit:cover;border-radius:3px}
+.form-row input,.form-row select{width:100%;padding:8px 10px}
+.btn-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.feed-msg{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--rl);padding:12px 16px;margin-bottom:8px}
+.feed-who{font-size:12px;font-weight:500;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.feed-when{font-size:11px;color:var(--t3);font-weight:400}
+.feed-text{font-size:14px;line-height:1.5;white-space:pre-wrap}
+.compose{background:var(--bg1);border:0.5px solid var(--border);border-radius:var(--rl);padding:14px 16px;margin-bottom:18px}
+.compose-row{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.empty{text-align:center;padding:40px 20px;color:var(--t2)}
+.empty .icon{font-size:28px;margin-bottom:8px}
+.tbl-wrap{border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden}
+.admin-list-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:0.5px solid var(--border);font-size:13px}
+.admin-list-row:first-child{border-top:none}
+.admin-list-row:nth-child(even){background:var(--bg2)}
+.tag{display:inline-block;font-size:10px;border-radius:3px;padding:1px 6px;font-weight:500}
+.tooltip{position:relative;display:inline-block}
+.tooltip .tip{visibility:hidden;background:#333;color:#fff;font-size:11px;border-radius:4px;padding:4px 8px;position:absolute;bottom:125%;left:50%;transform:translateX(-50%);white-space:nowrap;z-index:10;opacity:0;transition:opacity .2s;pointer-events:none}
+.tooltip:hover .tip{visibility:visible;opacity:1}
 </style>
 </head>
 <body>
 <div class="app" id="app"></div>
-
 <script>
 // ============================================================
-// DATA
+// STATIC DATA
 // ============================================================
 const MANAGERS = ["Maarten","Remco","Ivar","Geert","Abele","Vincent","Willem","Rolf"];
 const COLORS = {
@@ -104,41 +118,18 @@ const COLORS = {
   Willem:"#639922",Rolf:"#888780"
 };
 
-const TEAM_COLORS = {
-  "Visma":["#FFE100","#000"],
-  "UAE":["#E63329","#fff"],
-  "Red Bull":["#1C1C1C","#E8002D"],
-  "Bora":["#00A94F","#fff"],
-  "INEOS":["#0057A8","#fff"],
-  "Alpacin":["#E30613","#fff"],
-  "Quick Step":["#003DA5","#fff"],
-  "Lidl":["#003DA5","#fff"],
-  "EF":["#EF3932","#fff"],
-  "Bahrain":["#D4002A","#fff"],
-  "Movistar":["#00A3E0","#fff"],
-  "Astana":["#00A0C6","#fff"],
-  "Decathlon":["#007DC5","#fff"],
-  "Jayco":["#E31837","#fff"],
-  "FDJ":["#003189","#fff"],
-  "Lotto":["#E10000","#fff"],
-  "Cofidis":["#E4002B","#fff"],
-  "Total Energies":["#F7941D","#fff"],
-  "Tudor":["#C8A96E","#fff"],
-  "Uno-X":["#EF3340","#fff"],
-  "Arkea":["#000","#fff"],
-  "Groupama":["#003DA5","#fff"],
-  "Intermarche":["#ED1C24","#fff"],
-  "DSM":["#E30613","#fff"],
-  "Soudal":["#E20025","#fff"],
-  "NSN":["#1B2A4A","#fff"],
-  "Q36.5":["#333","#fff"],
-  "Tietema":["#FF6B00","#fff"],
-  "Picnic":["#5FBF2A","#fff"],
-  "default":["#888","#fff"]
+const DEFAULT_TEAM_COLORS = {
+  "Visma":"#FFE100","UAE":"#E63329","Red Bull":"#E8002D","Bora":"#00A94F",
+  "INEOS":"#0057A8","Alpacin":"#E30613","Quick Step":"#003DA5","Lidl":"#0055A5",
+  "EF":"#EF3932","Bahrain":"#D4002A","Movistar":"#00A3E0","Astana":"#00A0C6",
+  "Decathlon":"#007DC5","Jayco":"#E31837","FDJ":"#003189","Lotto":"#E10000",
+  "Cofidis":"#E4002B","Total Energies":"#F7941D","Tudor":"#C8A96E",
+  "Uno-X":"#EF3340","Arkea":"#1B3A6B","Groupama":"#003DA5",
+  "Intermarche":"#ED1C24","Soudal":"#E20025","NSN":"#1B2A4A",
+  "Q36.5":"#555","Tietema":"#FF6B00","Picnic":"#5FBF2A","default":"#888"
 };
 
-// Pro team assignments (2026 season best knowledge)
-const RIDER_TEAMS = {
+const RIDER_TEAM_DEFAULT = {
   "POGAČAR Tadej":"UAE","VINGEGAARD Jonas":"Visma","DEL TORO Isaac":"UAE",
   "PEDERSEN Mads":"Lidl","ALMEIDA Joao":"UAE","EVENEPOEL Remco":"Quick Step",
   "PIDCOCK Thomas":"INEOS","VAN DER POEL Mathieu":"Alpacin","ONLEY Oscar":"INEOS",
@@ -149,511 +140,266 @@ const RIDER_TEAMS = {
   "GALL Felix":"UAE","MCNULTY Brandon":"UAE","GANNA Filippo":"INEOS",
   "MILAN Jonathan":"Lidl","KOOIJ Olav":"Visma","STORER Michael":"Visma",
   "POOLE Max":"INEOS","JORGENSON Matteo":"Visma","MERLIER Tim":"Soudal",
-  "MARTINEZ Lenny":"Red Bull","ROGLIČL Primož":"Red Bull","CARAPAZ Richard":"EF",
+  "MARTINEZ Lenny":"Red Bull","ROGLIČ Primož":"Red Bull","CARAPAZ Richard":"EF",
   "GREGOIRE Romain":"EF","MATTHEWS Michael":"Jayco","BERNAL Egan":"INEOS",
-  "GIRMAAY Biniam":"Intermarche","GEE Derek":"EF","POWLESS Neilson":"EF",
-  "JEANNIEREERE Emilien":"Total Energies","ARENSMAN Thymen":"INEOS",
-  "HINDLEY Jai":"Bora","BRENNAN Matthew":"Lidl","NARVAEZ Jhonatan":"INEOS",
-  "PELLIZZARI Giulio":"Visma","VELASCO Simone":"Astana","STRONG Corbin":"NSN",
-  "FORTUNATO Lorenzo":"Cofidis","ALAPHILIPPE Julian":"Tudor",
-  "JOHANNESSEN Tobias Halland":"Uno-X","GROVES Kaden":"Alpacin",
-  "CHRISTEN Jan":"UAE","YATES Adam":"Movistar","BENOOT Tiesj":"Visma",
-  "SIMMONS Quinn":"EF","HIRSCHI Marc":"Tudor","LUND ANDRESEN Tobias":"Alpacin",
-  "WELLENS Tim":"Lotto","MEEUS Jordi":"Red Bull","KUBIŠ Lukáš":"Soudal",
-  "SCHMID Mauro":"Alpacin","WÆRENSKJOLD Søren":"Uno-X","ARANBURU Alex":"Movistar",
-  "AULAR Alberto":"Caja Rural","SIVAKOV Pavel":"Bahrain","FRETIN Milan":"Intermarche",
-  "SEIXAS Paul":"Cofidis","BITTNER Pavel":"Intermarche","TIBERI Antonio":"Bahrain",
-  "PRODHOMME Nicolas":"Arkea","WRIGHT Fred":"Bahrain","SKUJINS Toms":"Lidl",
-  "ROMO Javier":"Movistar","BILBAO Pello":"Bahrain","BUITRAGO Santiago":"Bahrain",
-  "WIDAR Jarno":"Alpacin","LAPORTE Christophe":"Visma","MAS Enric":"Movistar",
-  "VAN GILS Maxim":"Lotto","TULETT Ben":"Red Bull","LANGELLOTTI Victor":"Movistar",
-  "RICCITIELLO Matthew":"Red Bull","VAN WILDER Ilan":"Soudal","BARRE Louis":"FDJ",
-  "PITHIE Laurence":"Groupama","ROGLIČ Primož":"Red Bull","GIRMAAY Biniam":"Intermarche",
-  "GIRMAAY Binam":"Intermarche",
+  "GIRMAY Biniam":"Intermarche","GIRMAAY Biniam":"Intermarche","GEE Derek":"EF",
+  "POWLESS Neilson":"EF","ARENSMAN Thymen":"INEOS","HINDLEY Jai":"Bora",
+  "BRENNAN Matthew":"Lidl","NARVAEZ Jhonatan":"INEOS","PELLIZZARI Giulio":"Visma",
+  "VELASCO Simone":"Astana","STRONG Corbin":"NSN","FORTUNATO Lorenzo":"Cofidis",
+  "ALAPHILIPPE Julian":"Tudor","JOHANNESSEN Tobias Halland":"Uno-X",
+  "GROVES Kaden":"Alpacin","CHRISTEN Jan":"UAE","YATES Adam":"Movistar",
+  "BENOOT Tiesj":"Visma","SIMMONS Quinn":"EF","HIRSCHI Marc":"Tudor",
+  "LUND ANDRESEN Tobias":"Alpacin","WELLENS Tim":"Lotto","MEEUS Jordi":"Red Bull",
+  "KUBIŠ Lukáš":"Soudal","SCHMID Mauro":"Alpacin","WÆRENSKJOLD Søren":"Uno-X",
+  "ARANBURU Alex":"Movistar","AULAR Alberto":"Caja Rural","SIVAKOV Pavel":"Bahrain",
+  "FRETIN Milan":"Intermarche","SEIXAS Paul":"Cofidis","BITTNER Pavel":"Intermarche",
+  "TIBERI Antonio":"Bahrain","PRODHOMME Nicolas":"Arkea","WRIGHT Fred":"Bahrain",
+  "SKUJINS Toms":"Lidl","ROMO Javier":"Movistar","BILBAO Pello":"Bahrain",
+  "BUITRAGO Santiago":"Bahrain","WIDAR Jarno":"Alpacin","LAPORTE Christophe":"Visma",
+  "MAS Enric":"Movistar","VAN GILS Maxim":"Lotto","TULETT Ben":"Red Bull",
+  "LANGELLOTTI Victor":"Movistar","RICCITIELLO Matthew":"Red Bull",
+  "RICCITELLO Matthew":"Red Bull","VAN WILDER Ilan":"Soudal","BARRE Louis":"FDJ",
+  "PITHIE Laurence":"Groupama","JEANNIEREERE Emilien":"Total Energies",
 };
 
-function getTeam(name) {
-  const clean = name.trim();
-  if (RIDER_TEAMS[clean]) return RIDER_TEAMS[clean];
-  // fuzzy
-  const key = Object.keys(RIDER_TEAMS).find(k => k.split(" ")[0] === clean.split(" ")[0] && k.split(" ").slice(-1)[0] === clean.split(" ").slice(-1)[0]);
-  return key ? RIDER_TEAMS[key] : "default";
-}
-
-// DNF data from spreadsheet
-const DNF_DATA = {
-  "TULETT Ben":["Strade Bianche"],
-  "GEE Derek":["UAE Tour"],
-  "ALAPHILIPPE Julian":["Omloop"],
-  "CARAPAZ Richard":["Omloop"],
-  "VAN AERT Wout":["Omloop"],
-  "ARANBURU Alex":["Omloop"],
-  "JEANNIEREERE Emilien":["Omloop"],
-  "TIBERI Antonio":["UAE Tour"],
-  "SCARONI Christian":["Tour of Oman","Tirreno"],
-  "GIRMAAY Biniam":["Omloop"],
-  "PEDERSEN Mads":["Omloop"],
-  "ROMO Javier":["Volta Valenciana"],
-  "ONLEY Oscar":["Paris-Nice","Paris-Nice"],
-  "SKUJINS Toms":["Paris-Nice","Paris-Nice"],
-  "PIDCOCK Thomas":["Paris-Nice"],
-  "POOLE Max":["Strade Bianche"],
-  "BERNAL Egan":["Strade Bianche"],
-  "JOHANNESSEN Tobias Halland":["Strade Bianche"],
-  "HIRSCHI Marc":["Strade Bianche"],
-  "JORGENSON Matteo":["Strade Bianche"],
-  "MARTINEZ Lenny":["Strade Bianche"],
-  "VAN GILS Maxim":["Strade Bianche"],
-  "RICCITIELLO Matthew":["Strade Bianche"],
-  "BUITRAGO Santiago":["UAE Tour"],
-  "WIDAR Jarno":["???"],
-  "LAPORTE Christophe":["Volta Valenciana"],
-  "MAS Enric":["???"],
-  "MCNULTY Brandon":["Volta Valenciana","Volta Valenciana"],
-  "ROGLIČ Primož":["???"],
-  "VAN WILDER Ilan":["???","???"],
-  "LANGELLOTTI Victor":["???","???","???"],
-  "WELLENS Tim":["???"],
-  "AYUSO Juan":["???","???","???"],
-  "SIVAKOV Pavel":["???"],
-  "VINE Jay":["???","???"],
-  "SCHMID Mauro":["Giro d'Italia"],
-  "DE LIE Arnaud":["Giro"],
-  "FRETING Milan":["???"],
-  "DEL TORO Isaac":["Tirreno"],
-  "GROVES Kaden":["Paris-Nice"],
-};
-
-// RIDERS data (from Veiling sheet)
-const RIDERS_DATA = [
-  {name:"POGAČAR Tadej",cost:17.0,manager:"Vincent",joker:"",points:372,dnf:0},
-  {name:"VINGEGAARD Jonas",cost:8.6,manager:"Willem",joker:"",points:255,dnf:0},
-  {name:"DEL TORO Isaac",cost:5.0,manager:"Maarten",joker:"",points:194,dnf:1},
-  {name:"PEDERSEN Mads",cost:5.3,manager:"Abele",joker:"",points:92,dnf:1},
-  {name:"ALMEIDA Joao",cost:8.1,manager:"Willem",joker:"",points:61,dnf:0},
-  {name:"EVENEPOEL Remco",cost:9.0,manager:"Ivar",joker:"",points:233,dnf:0},
-  {name:"PIDCOCK Thomas",cost:4.8,manager:"Ivar",joker:"",points:177,dnf:1},
-  {name:"VAN DER POEL Mathieu",cost:5.2,manager:"Maarten",joker:"",points:216,dnf:0},
-  {name:"ONLEY Oscar",cost:3.6,manager:"Ivar",joker:"",points:35,dnf:2},
-  {name:"VAN AERT Wout",cost:6.5,manager:"Abele",joker:"",points:177,dnf:0},
-  {name:"DE LIE Arnaud",cost:3.9,manager:"Maarten",joker:"",points:68,dnf:1},
-  {name:"CICCONE Giulio",cost:3.0,manager:"Willem",joker:"",points:71,dnf:0},
-  {name:"HEALY Ben",cost:2.4,manager:"Ivar",joker:"",points:15,dnf:0},
-  {name:"AYUSO Juan",cost:4.8,manager:"Rolf",joker:"",points:59,dnf:3},
-  {name:"LIPOWITZ Florian",cost:4.2,manager:"Maarten",joker:"",points:168,dnf:0},
-  {name:"VAUQUELIN Kévin",cost:3.0,manager:"Ivar",joker:"",points:73,dnf:0},
-  {name:"PHILIPSEN Jasper",cost:5.1,manager:"Geert",joker:"",points:103,dnf:0},
-  {name:"SCARONI Christian",cost:1.3,manager:"Abele",joker:"",points:70,dnf:2},
-  {name:"MAGNIER Paul",cost:2.2,manager:"Remco",joker:"",points:104,dnf:0},
-  {name:"VINE Jay",cost:2.5,manager:"Maarten",joker:"",points:0,dnf:2},
-  {name:"SKJELMOSE Mattias",cost:2.6,manager:"Rolf",joker:"",points:101,dnf:0},
-  {name:"GALL Felix",cost:3.6,manager:"Maarten",joker:"",points:114,dnf:0},
-  {name:"MCNULTY Brandon",cost:2.2,manager:"Willem",joker:"",points:15,dnf:2},
-  {name:"GANNA Filippo",cost:3.8,manager:"Abele",joker:"",points:76,dnf:0},
-  {name:"MILAN Jonathan",cost:6.1,manager:"Remco",joker:"",points:100,dnf:0},
-  {name:"KOOIJ Olav",cost:3.9,manager:"Geert",joker:"",points:0,dnf:0},
-  {name:"STORER Michael",cost:1.9,manager:"Remco",joker:"",points:62,dnf:0},
-  {name:"POOLE Max",cost:3.4,manager:"Geert",joker:"Geert",points:0,dnf:0},
-  {name:"JORGENSON Matteo",cost:3.7,manager:"Geert",joker:"",points:89,dnf:0},
-  {name:"MERLIER Tim",cost:2.9,manager:"Rolf",joker:"",points:0,dnf:0},
-  {name:"MARTINEZ Lenny",cost:3.0,manager:"Geert",joker:"",points:169,dnf:0},
-  {name:"ROGLIČ Primož",cost:2.5,manager:"Remco",joker:"",points:36,dnf:0},
-  {name:"CARAPAZ Richard",cost:2.7,manager:"Abele",joker:"",points:5,dnf:0},
-  {name:"GREGOIRE Romain",cost:3.0,manager:"Remco",joker:"",points:117,dnf:0},
-  {name:"MATTHEWS Michael",cost:1.1,manager:"Willem",joker:"",points:0,dnf:0},
-  {name:"BERNAL Egan",cost:2.1,manager:"Geert",joker:"",points:96,dnf:0},
-  {name:"GIRMAAY Biniam",cost:2.0,manager:"Abele",joker:"",points:41,dnf:1},
-  {name:"GEE Derek",cost:3.2,manager:"Abele",joker:"",points:83,dnf:1},
-  {name:"POWLESS Neilson",cost:1.5,manager:"Willem",joker:"",points:0,dnf:0},
-  {name:"JEANNIEREERE Emilien",cost:0.2,manager:"Abele",joker:"",points:0,dnf:0},
-  {name:"ARENSMAN Thymen",cost:1.5,manager:"Ivar",joker:"",points:107,dnf:0},
-  {name:"HINDLEY Jai",cost:1.9,manager:"Vincent",joker:"",points:25,dnf:0},
-  {name:"BRENNAN Matthew",cost:2.5,manager:"Geert",joker:"",points:70,dnf:0},
-  {name:"NARVAEZ Jhonatan",cost:1.5,manager:"Rolf",joker:"",points:36,dnf:1},
-  {name:"PELLIZZARI Giulio",cost:4.4,manager:"Rolf",joker:"",points:132,dnf:0},
-  {name:"VELASCO Simone",cost:1.2,manager:"Vincent",joker:"",points:0,dnf:0},
-  {name:"STRONG Corbin",cost:0.5,manager:"Vincent",joker:"",points:31,dnf:0},
-  {name:"FORTUNATO Lorenzo",cost:2.6,manager:"Rolf",joker:"",points:10,dnf:0},
-  {name:"ALAPHILIPPE Julian",cost:1.5,manager:"Abele",joker:"",points:0,dnf:1},
-  {name:"JOHANNESSEN Tobias Halland",cost:1.5,manager:"Geert",joker:"",points:108,dnf:0},
-  {name:"GROVES Kaden",cost:1.7,manager:"Ivar",joker:"",points:0,dnf:1},
-  {name:"CHRISTEN Jan",cost:1.5,manager:"Remco",joker:"",points:69,dnf:0},
-  {name:"YATES Adam",cost:2.7,manager:"Rolf",joker:"",points:25,dnf:1},
-  {name:"BENOOT Tiesj",cost:2.7,manager:"Vincent",joker:"",points:0,dnf:0},
-  {name:"SIMMONS Quinn",cost:1.0,manager:"Remco",joker:"",points:8,dnf:1},
-  {name:"HIRSCHI Marc",cost:0.5,manager:"Geert",joker:"",points:0,dnf:0},
-  {name:"LUND ANDRESEN Tobias",cost:1.8,manager:"Maarten",joker:"",points:151,dnf:0},
-  {name:"WELLENS Tim",cost:1.9,manager:"Rolf",joker:"",points:33,dnf:0},
-  {name:"MEEUS Jordi",cost:1.8,manager:"Ivar",joker:"",points:50,dnf:0},
-  {name:"KUBIŠ Lukáš",cost:1.1,manager:"Rolf",joker:"",points:10,dnf:0},
-  {name:"SCHMID Mauro",cost:1.0,manager:"Maarten",joker:"",points:116,dnf:1},
-  {name:"WÆRENSKJOLD Søren",cost:1.6,manager:"Maarten",joker:"",points:39,dnf:0},
-  {name:"ARANBURU Alex",cost:0.7,manager:"Abele",joker:"",points:21,dnf:1},
-  {name:"AULAR Alberto",cost:0.5,manager:"Abele",joker:"",points:31,dnf:0},
-  {name:"SIVAKOV Pavel",cost:1.4,manager:"Vincent",joker:"",points:0,dnf:1},
-  {name:"FRETIN Milan",cost:1.2,manager:"Maarten",joker:"",points:6,dnf:1},
-  {name:"SEIXAS Paul",cost:2.5,manager:"Remco",joker:"",points:292,dnf:0},
-  {name:"BITTNER Pavel",cost:0.9,manager:"Vincent",joker:"",points:22,dnf:0},
-  {name:"TIBERI Antonio",cost:2.3,manager:"Abele",joker:"",points:81,dnf:1},
-  {name:"PRODHOMME Nicolas",cost:0.9,manager:"Vincent",joker:"",points:3,dnf:1},
-  {name:"WRIGHT Fred",cost:0.6,manager:"Rolf",joker:"",points:0,dnf:0},
-  {name:"SKUJINS Toms",cost:1.0,manager:"Ivar",joker:"",points:5,dnf:2},
-  {name:"ROMO Javier",cost:0.9,manager:"Geert",joker:"",points:23,dnf:1},
-  {name:"BILBAO Pello",cost:1.0,manager:"Willem",joker:"",points:87,dnf:0},
-  {name:"BUITRAGO Santiago",cost:1.9,manager:"Remco",joker:"",points:20,dnf:1},
-  {name:"WIDAR Jarno",cost:2.3,manager:"Remco",joker:"Vincent",points:0,dnf:0},
-  {name:"LAPORTE Christophe",cost:3.0,manager:"Vincent",joker:"Maarten",points:143,dnf:1},
-  {name:"MAS Enric",cost:2.5,manager:"Rolf",joker:"Abele",points:8,dnf:0},
-  {name:"VAN GILS Maxim",cost:2.6,manager:"Remco",joker:"Geert",points:0,dnf:0},
-  {name:"TULETT Ben",cost:2.1,manager:"Geert",joker:"Abele",points:70,dnf:1},
-  {name:"LANGELLOTTI Victor",cost:1.1,manager:"Rolf",joker:"Rolf",points:0,dnf:3},
-  {name:"RICCITIELLO Matthew",cost:2.5,manager:"Remco",joker:"Remco",points:21,dnf:1},
-  {name:"VAN WILDER Ilan",cost:1.3,manager:"Rolf",joker:"Willem",points:0,dnf:2},
-  {name:"BARRE Louis",cost:2.5,manager:"Willem",joker:"Abele",points:0,dnf:0},
-  {name:"PITHIE Laurence",cost:1.0,manager:"Ivar",joker:"Ivar",points:71,dnf:0},
+const RIDERS_INITIAL = [
+  {name:"POGAČAR Tadej",cost:17.0,manager:"Vincent",joker:false},{name:"VINGEGAARD Jonas",cost:8.6,manager:"Willem",joker:false},
+  {name:"DEL TORO Isaac",cost:5.0,manager:"Maarten",joker:false},{name:"PEDERSEN Mads",cost:5.3,manager:"Abele",joker:false},
+  {name:"ALMEIDA Joao",cost:8.1,manager:"Willem",joker:false},{name:"EVENEPOEL Remco",cost:9.0,manager:"Ivar",joker:false},
+  {name:"PIDCOCK Thomas",cost:4.8,manager:"Ivar",joker:false},{name:"VAN DER POEL Mathieu",cost:5.2,manager:"Maarten",joker:false},
+  {name:"ONLEY Oscar",cost:3.6,manager:"Ivar",joker:false},{name:"VAN AERT Wout",cost:6.5,manager:"Abele",joker:false},
+  {name:"DE LIE Arnaud",cost:3.9,manager:"Maarten",joker:false},{name:"CICCONE Giulio",cost:3.0,manager:"Willem",joker:false},
+  {name:"HEALY Ben",cost:2.4,manager:"Ivar",joker:false},{name:"AYUSO Juan",cost:4.8,manager:"Rolf",joker:false},
+  {name:"LIPOWITZ Florian",cost:4.2,manager:"Maarten",joker:false},{name:"VAUQUELIN Kévin",cost:3.0,manager:"Ivar",joker:false},
+  {name:"PHILIPSEN Jasper",cost:5.1,manager:"Geert",joker:false},{name:"SCARONI Christian",cost:1.3,manager:"Abele",joker:false},
+  {name:"MAGNIER Paul",cost:2.2,manager:"Remco",joker:false},{name:"VINE Jay",cost:2.5,manager:"Maarten",joker:false},
+  {name:"SKJELMOSE Mattias",cost:2.6,manager:"Rolf",joker:false},{name:"GALL Felix",cost:3.6,manager:"Maarten",joker:false},
+  {name:"MCNULTY Brandon",cost:2.2,manager:"Willem",joker:false},{name:"GANNA Filippo",cost:3.8,manager:"Abele",joker:false},
+  {name:"MILAN Jonathan",cost:6.1,manager:"Remco",joker:false},{name:"KOOIJ Olav",cost:3.9,manager:"Geert",joker:false},
+  {name:"STORER Michael",cost:1.9,manager:"Remco",joker:false},{name:"POOLE Max",cost:3.4,manager:"Geert",joker:false},
+  {name:"JORGENSON Matteo",cost:3.7,manager:"Geert",joker:false},{name:"MERLIER Tim",cost:2.9,manager:"Rolf",joker:false},
+  {name:"MARTINEZ Lenny",cost:3.0,manager:"Geert",joker:false},{name:"ROGLIČ Primož",cost:2.5,manager:"Remco",joker:false},
+  {name:"CARAPAZ Richard",cost:2.7,manager:"Abele",joker:false},{name:"GREGOIRE Romain",cost:3.0,manager:"Remco",joker:false},
+  {name:"MATTHEWS Michael",cost:1.1,manager:"Willem",joker:false},{name:"BERNAL Egan",cost:2.1,manager:"Geert",joker:false},
+  {name:"GIRMAY Biniam",cost:2.0,manager:"Abele",joker:false},{name:"GEE Derek",cost:3.2,manager:"Abele",joker:false},
+  {name:"POWLESS Neilson",cost:1.5,manager:"Willem",joker:false},{name:"JEANNIEREERE Emilien",cost:0.2,manager:"Abele",joker:false},
+  {name:"ARENSMAN Thymen",cost:1.5,manager:"Ivar",joker:false},{name:"HINDLEY Jai",cost:1.9,manager:"Vincent",joker:false},
+  {name:"BRENNAN Matthew",cost:2.5,manager:"Geert",joker:false},{name:"NARVAEZ Jhonatan",cost:1.5,manager:"Rolf",joker:false},
+  {name:"PELLIZZARI Giulio",cost:4.4,manager:"Rolf",joker:false},{name:"VELASCO Simone",cost:1.2,manager:"Vincent",joker:false},
+  {name:"STRONG Corbin",cost:0.5,manager:"Vincent",joker:false},{name:"FORTUNATO Lorenzo",cost:2.6,manager:"Rolf",joker:false},
+  {name:"ALAPHILIPPE Julian",cost:1.5,manager:"Abele",joker:false},{name:"JOHANNESSEN Tobias Halland",cost:1.5,manager:"Geert",joker:false},
+  {name:"GROVES Kaden",cost:1.7,manager:"Ivar",joker:false},{name:"CHRISTEN Jan",cost:1.5,manager:"Remco",joker:false},
+  {name:"YATES Adam",cost:2.7,manager:"Rolf",joker:false},{name:"BENOOT Tiesj",cost:2.7,manager:"Vincent",joker:false},
+  {name:"SIMMONS Quinn",cost:1.0,manager:"Remco",joker:false},{name:"HIRSCHI Marc",cost:0.5,manager:"Geert",joker:false},
+  {name:"LUND ANDRESEN Tobias",cost:1.8,manager:"Maarten",joker:false},{name:"WELLENS Tim",cost:1.9,manager:"Rolf",joker:false},
+  {name:"MEEUS Jordi",cost:1.8,manager:"Ivar",joker:false},{name:"KUBIŠ Lukáš",cost:1.1,manager:"Rolf",joker:false},
+  {name:"SCHMID Mauro",cost:1.0,manager:"Maarten",joker:false},{name:"WÆRENSKJOLD Søren",cost:1.6,manager:"Maarten",joker:false},
+  {name:"ARANBURU Alex",cost:0.7,manager:"Abele",joker:false},{name:"AULAR Alberto",cost:0.5,manager:"Abele",joker:false},
+  {name:"SIVAKOV Pavel",cost:1.4,manager:"Vincent",joker:false},{name:"FRETIN Milan",cost:1.2,manager:"Maarten",joker:false},
+  {name:"SEIXAS Paul",cost:2.5,manager:"Remco",joker:false},{name:"BITTNER Pavel",cost:0.9,manager:"Vincent",joker:false},
+  {name:"TIBERI Antonio",cost:2.3,manager:"Abele",joker:false},{name:"PRODHOMME Nicolas",cost:0.9,manager:"Vincent",joker:false},
+  {name:"WRIGHT Fred",cost:0.6,manager:"Rolf",joker:false},{name:"SKUJINS Toms",cost:1.0,manager:"Ivar",joker:false},
+  {name:"ROMO Javier",cost:0.9,manager:"Geert",joker:false},{name:"BILBAO Pello",cost:1.0,manager:"Willem",joker:false},
+  {name:"BUITRAGO Santiago",cost:1.9,manager:"Remco",joker:false},{name:"WIDAR Jarno",cost:2.3,manager:"Remco",joker:false},
+  {name:"LAPORTE Christophe",cost:3.0,manager:"Vincent",joker:false},{name:"MAS Enric",cost:2.5,manager:"Rolf",joker:false},
+  {name:"VAN GILS Maxim",cost:2.6,manager:"Remco",joker:false},{name:"TULETT Ben",cost:2.1,manager:"Geert",joker:false},
+  {name:"LANGELLOTTI Victor",cost:1.1,manager:"Rolf",joker:false},{name:"RICCITIELLO Matthew",cost:2.5,manager:"Remco",joker:false},
+  {name:"VAN WILDER Ilan",cost:1.3,manager:"Rolf",joker:false},{name:"BARRE Louis",cost:2.5,manager:"Willem",joker:false},
+  {name:"PITHIE Laurence",cost:1.0,manager:"Ivar",joker:false},
 ];
 
-// Add costPerPoint
-RIDERS_DATA.forEach(r => {
-  r.costPerPoint = (r.points > 0 && r.cost > 0) ? Math.round(r.cost / r.points * 100000) : null;
-  r.dnfRaces = DNF_DATA[r.name] || [];
-});
-
-// RACES DATA
-const RACES_DATA = [
-  {name:"Cadel Evans Great Ocean Road Race",type:"1.UWT",finals:[
-    {pos:1,rider:"LUND ANDRESEN Tobias",pts:50},{pos:2,rider:"BRENNAN Matthew",pts:40},
-    {pos:4,rider:"SCHMID Mauro",pts:30},{pos:6,rider:"PITHIE Laurence",pts:20},
-  ],stages:[],dnfs:[]},
-  {name:"Volta Comunitat Valenciana",type:"2.Pro",finals:[
-    {pos:1,rider:"EVENEPOEL Remco",pts:40},{pos:2,rider:"ALMEIDA Joao",pts:30},
-    {pos:3,rider:"PELLIZZARI Giulio",pts:25},{pos:4,rider:"TIBERI Antonio",pts:20},
-    {pos:5,rider:"MCNULTY Brandon",pts:15},{pos:9,rider:"RICCITIELLO Matthew",pts:3},
-  ],stages:[
-    {stage:1,rider:"GIRMAAY Biniam",pts:6},{stage:2,rider:"EVENEPOEL Remco",pts:6},
-    {stage:4,rider:"EVENEPOEL Remco",pts:6},{stage:4,rider:"ALMEIDA Joao",pts:4},
-    {stage:4,rider:"PELLIZZARI Giulio",pts:2},
-  ],dnfs:[]},
-  {name:"Tour of Oman",type:"2.Pro",finals:[
-    {pos:1,rider:"SCARONI Christian",pts:40},{pos:3,rider:"YATES Adam",pts:25},
-    {pos:4,rider:"SCHMID Mauro",pts:20},
-  ],stages:[
-    {stage:2,rider:"SCHMID Mauro",pts:6},{stage:2,rider:"SCARONI Christian",pts:4},
-    {stage:5,rider:"SCARONI Christian",pts:4},
-  ],dnfs:[]},
-  {name:"UAE Tour",type:"2.UWT",finals:[
-    {pos:1,rider:"DEL TORO Isaac",pts:60},{pos:2,rider:"TIBERI Antonio",pts:50},
-    {pos:5,rider:"GALL Felix",pts:30},{pos:7,rider:"GEE Derek",pts:20},
-    {pos:9,rider:"JOHANNESSEN Tobias Halland",pts:10},{pos:10,rider:"EVENEPOEL Remco",pts:5},
-  ],stages:[
-    {stage:1,rider:"DEL TORO Isaac",pts:8},{stage:1,rider:"TIBERI Antonio",pts:3},
-    {stage:2,rider:"EVENEPOEL Remco",pts:8},{stage:3,rider:"TIBERI Antonio",pts:8},
-    {stage:3,rider:"DEL TORO Isaac",pts:5},{stage:4,rider:"MILAN Jonathan",pts:8},
-    {stage:5,rider:"MILAN Jonathan",pts:8},{stage:6,rider:"DEL TORO Isaac",pts:8},
-    {stage:6,rider:"GALL Felix",pts:3},{stage:7,rider:"MILAN Jonathan",pts:8},
-  ],dnfs:["BUITRAGO Santiago","GEE Derek"]},
-  {name:"Clasica Jaen",type:"1.Pro",finals:[
-    {pos:1,rider:"WELLENS Tim",pts:30},{pos:2,rider:"PIDCOCK Thomas",pts:25},
-    {pos:6,rider:"BILBAO Pello",pts:7},{pos:9,rider:"KUBIŠ Lukáš",pts:2},
-  ],stages:[],dnfs:[]},
-  {name:"Vuelta a Andalucia",type:"2.Pro",finals:[
-    {pos:3,rider:"PIDCOCK Thomas",pts:25},{pos:4,rider:"CHRISTEN Jan",pts:20},
-    {pos:5,rider:"GREGOIRE Romain",pts:15},{pos:6,rider:"ARANBURU Alex",pts:11},
-    {pos:9,rider:"WELLENS Tim",pts:3},
-  ],stages:[
-    {stage:1,rider:"LAPORTE Christophe",pts:6},{stage:2,rider:"ARANBURU Alex",pts:2},
-    {stage:3,rider:"FRETIN Milan",pts:6},{stage:3,rider:"LAPORTE Christophe",pts:2},
-    {stage:4,rider:"WÆRENSKJOLD Søren",pts:4},{stage:5,rider:"PIDCOCK Thomas",pts:6},
-    {stage:5,rider:"CHRISTEN Jan",pts:4},{stage:5,rider:"GREGOIRE Romain",pts:2},
-  ],dnfs:[]},
-  {name:"Volta ao Algarve",type:"2.Pro",finals:[
-    {pos:1,rider:"AYUSO Juan",pts:40},{pos:2,rider:"SEIXAS Paul",pts:30},
-    {pos:3,rider:"ALMEIDA Joao",pts:25},{pos:4,rider:"ONLEY Oscar",pts:20},
-    {pos:5,rider:"VAUQUELIN Kévin",pts:15},{pos:6,rider:"RICCITIELLO Matthew",pts:11},
-    {pos:8,rider:"LIPOWITZ Florian",pts:5},{pos:9,rider:"ARENSMAN Thymen",pts:3},
-  ],stages:[
-    {stage:1,rider:"MAGNIER Paul",pts:6},{stage:1,rider:"MEEUS Jordi",pts:4},
-    {stage:1,rider:"BITTNER Pavel",pts:2},{stage:2,rider:"SEIXAS Paul",pts:6},
-    {stage:2,rider:"AYUSO Juan",pts:4},{stage:2,rider:"ALMEIDA Joao",pts:2},
-    {stage:3,rider:"GANNA Filippo",pts:6},{stage:3,rider:"AYUSO Juan",pts:4},
-    {stage:4,rider:"MAGNIER Paul",pts:6},{stage:4,rider:"MEEUS Jordi",pts:4},
-    {stage:5,rider:"AYUSO Juan",pts:6},{stage:5,rider:"ONLEY Oscar",pts:4},
-    {stage:5,rider:"SEIXAS Paul",pts:2},
-  ],dnfs:[]},
-  {name:"Faun Ardeche",type:"1.Pro",finals:[
-    {pos:1,rider:"SEIXAS Paul",pts:30},{pos:2,rider:"CHRISTEN Jan",pts:25},
-    {pos:3,rider:"MARTINEZ Lenny",pts:20},{pos:4,rider:"JORGENSON Matteo",pts:15},
-    {pos:5,rider:"SKJELMOSE Mattias",pts:11},{pos:7,rider:"BERNAL Egan",pts:5},
-  ],stages:[],dnfs:[]},
-  {name:"Omloop Het Nieuwsblad",type:"1.UWT",finals:[
-    {pos:1,rider:"VAN DER POEL Mathieu",pts:50},{pos:4,rider:"LAPORTE Christophe",pts:30},
-    {pos:6,rider:"LUND ANDRESEN Tobias",pts:20},{pos:7,rider:"MEEUS Jordi",pts:15},
-  ],stages:[],dnfs:["AULAR Alberto","GEE Derek","ALAPHILIPPE Julian","CARAPAZ Richard","VAN AERT Wout","ARANBURU Alex","JEANNIEREERE Emilien","TIBERI Antonio","SCARONI Christian","GIRMAAY Biniam"]},
-  {name:"Kuurne-Brussel-Kuurne",type:"1.Pro",finals:[
-    {pos:1,rider:"BRENNAN Matthew",pts:30},{pos:7,rider:"LUND ANDRESEN Tobias",pts:5},
-    {pos:10,rider:"MEEUS Jordi",pts:1},
-  ],stages:[],dnfs:[]},
-  {name:"Ename Samyn Classic",type:"1.1",finals:[
-    {pos:1,rider:"MEEUS Jordi",pts:20},{pos:5,rider:"KUBIŠ Lukáš",pts:8},
-  ],stages:[],dnfs:[]},
-  {name:"Strade Bianche",type:"1.UWT",finals:[
-    {pos:1,rider:"POGAČAR Tadej",pts:50},{pos:2,rider:"SEIXAS Paul",pts:40},
-    {pos:3,rider:"DEL TORO Isaac",pts:35},{pos:4,rider:"GREGOIRE Romain",pts:30},
-    {pos:6,rider:"CHRISTEN Jan",pts:20},{pos:7,rider:"PIDCOCK Thomas",pts:15},
-    {pos:8,rider:"JORGENSON Matteo",pts:10},{pos:10,rider:"VAN AERT Wout",pts:2},
-  ],stages:[],dnfs:["TULETT Ben","POOLE Max","BERNAL Egan","ROMO Javier","JOHANNESSEN Tobias Halland","HIRSCHI Marc","JORGENSON Matteo","MARTINEZ Lenny","PHILIPSEN Jasper","BRENNAN Matthew"]},
-  {name:"Paris - Nice",type:"2.UWT",finals:[
-    {pos:1,rider:"VINGEGAARD Jonas",pts:60},{pos:4,rider:"VAUQUELIN Kévin",pts:35},
-    {pos:5,rider:"MARTINEZ Lenny",pts:30},
-  ],stages:[
-    {stage:1,rider:"AULAR Alberto",pts:3},{stage:2,rider:"PITHIE Laurence",pts:5},
-    {stage:3,rider:"VAUQUELIN Kévin",pts:8},{stage:3,rider:"ONLEY Oscar",pts:8},
-    {stage:3,rider:"AYUSO Juan",pts:5},{stage:3,rider:"SKUJINS Toms",pts:5},
-    {stage:3,rider:"PRODHOMME Nicolas",pts:3},{stage:4,rider:"VINGEGAARD Jonas",pts:8},
-    {stage:5,rider:"VINGEGAARD Jonas",pts:8},{stage:7,rider:"GIRMAAY Biniam",pts:5},
-    {stage:8,rider:"MARTINEZ Lenny",pts:8},{stage:8,rider:"VINGEGAARD Jonas",pts:5},
-  ],dnfs:["VAUQUELIN Kévin","MEEUS Jordi","ONLEY Oscar","SKUJINS Toms","EVENEPOEL Remco","PITHIE Laurence","ARENSMAN Thymen","HEALY Ben","VAN GILS Maxim","RICCITIELLO Matthew","BUITRAGO Santiago","CHRISTEN Jan","WIDAR Jarno","SEIXAS Paul","MAGNIER Paul","ROGLIČ Primož","MILAN Jonathan","STORER Michael","SIMMONS Quinn","MERLIER Tim","WRIGHT Fred","NARVAEZ Jhonatan","YATES Adam","AYUSO Juan","PELLIZZARI Giulio","SKJELMOSE Mattias","MAS Enric","KUBIŠ Lukáš"]},
-  {name:"Tirreno-Adriatico",type:"2.UWT",finals:[
-    {pos:1,rider:"DEL TORO Isaac",pts:60},{pos:2,rider:"JORGENSON Matteo",pts:50},
-    {pos:3,rider:"PELLIZZARI Giulio",pts:40},{pos:4,rider:"JOHANNESSEN Tobias Halland",pts:35},
-    {pos:5,rider:"ROGLIČ Primož",pts:30},{pos:6,rider:"CICCONE Giulio",pts:25},
-    {pos:7,rider:"BUITRAGO Santiago",pts:20},{pos:8,rider:"HEALY Ben",pts:15},
-  ],stages:[
-    {stage:1,rider:"GANNA Filippo",pts:8},{stage:1,rider:"ARENSMAN Thymen",pts:5},
-    {stage:2,rider:"VAN DER POEL Mathieu",pts:8},{stage:2,rider:"DEL TORO Isaac",pts:5},
-    {stage:2,rider:"PELLIZZARI Giulio",pts:3},{stage:3,rider:"LUND ANDRESEN Tobias",pts:8},
-    {stage:3,rider:"DE LIE Arnaud",pts:5},{stage:3,rider:"PHILIPSEN Jasper",pts:3},
-    {stage:4,rider:"VAN DER POEL Mathieu",pts:8},{stage:4,rider:"PELLIZZARI Giulio",pts:5},
-    {stage:4,rider:"JOHANNESSEN Tobias Halland",pts:3},{stage:5,rider:"DEL TORO Isaac",pts:5},
-    {stage:5,rider:"JORGENSON Matteo",pts:3},{stage:6,rider:"DEL TORO Isaac",pts:8},
-    {stage:6,rider:"JOHANNESSEN Tobias Halland",pts:5},{stage:6,rider:"JORGENSON Matteo",pts:3},
-    {stage:7,rider:"MILAN Jonathan",pts:8},
-  ],dnfs:["STRONG Corbin","HINDLEY Jai","POGAČAR Tadej","BENOOT Tiesj","PRODHOMME Nicolas","VELASCO Simone","LAPORTE Christophe","BITTNER Pavel","SIVAKOV Pavel"]},
-  {name:"Milaan - San Remo",type:"1.UWT",finals:[
-    {pos:1,rider:"POGAČAR Tadej",pts:60},{pos:2,rider:"PIDCOCK Thomas",pts:50},
-    {pos:3,rider:"VAN AERT Wout",pts:40},{pos:4,rider:"PEDERSEN Mads",pts:35},
-    {pos:5,rider:"STRONG Corbin",pts:30},{pos:8,rider:"VAN DER POEL Mathieu",pts:15},
-  ],stages:[],dnfs:[]},
-  {name:"Volta Ciclista a Catalunya",type:"2.UWT",finals:[
-    {pos:1,rider:"VINGEGAARD Jonas",pts:60},{pos:2,rider:"MARTINEZ Lenny",pts:50},
-    {pos:3,rider:"LIPOWITZ Florian",pts:40},{pos:5,rider:"EVENEPOEL Remco",pts:30},
-    {pos:6,rider:"GALL Felix",pts:25},{pos:7,rider:"SKJELMOSE Mattias",pts:20},
-    {pos:9,rider:"RICCITIELLO Matthew",pts:10},{pos:10,rider:"CARAPAZ Richard",pts:5},
-  ],stages:[
-    {stage:1,rider:"EVENEPOEL Remco",pts:5},{stage:1,rider:"PIDCOCK Thomas",pts:3},
-    {stage:4,rider:"PIDCOCK Thomas",pts:3},{stage:5,rider:"VINGEGAARD Jonas",pts:8},
-    {stage:5,rider:"GALL Felix",pts:5},{stage:5,rider:"MARTINEZ Lenny",pts:3},
-    {stage:6,rider:"VINGEGAARD Jonas",pts:8},{stage:6,rider:"MARTINEZ Lenny",pts:5},
-    {stage:6,rider:"LIPOWITZ Florian",pts:3},{stage:7,rider:"EVENEPOEL Remco",pts:3},
-  ],dnfs:[]},
-  {name:"Ronde van Brugge",type:"1.1",finals:[
-    {pos:2,rider:"PHILIPSEN Jasper",pts:40},{pos:6,rider:"BITTNER Pavel",pts:20},
-  ],stages:[],dnfs:[]},
-  {name:"E3 Saxo Classic",type:"1.UWT",finals:[
-    {pos:1,rider:"VAN DER POEL Mathieu",pts:50},{pos:6,rider:"LUND ANDRESEN Tobias",pts:20},
-    {pos:7,rider:"LAPORTE Christophe",pts:15},{pos:9,rider:"PEDERSEN Mads",pts:5},
-  ],stages:[],dnfs:[]},
-  {name:"In Flanders Field",type:"1.Pro",finals:[
-    {pos:1,rider:"PHILIPSEN Jasper",pts:50},{pos:2,rider:"LUND ANDRESEN Tobias",pts:40},
-    {pos:3,rider:"LAPORTE Christophe",pts:35},{pos:4,rider:"DE LIE Arnaud",pts:30},
-  ],stages:[],dnfs:[]},
-  {name:"Dwars door Vlaanderen",type:"1.UWT",finals:[
-    {pos:1,rider:"GANNA Filippo",pts:50},{pos:2,rider:"VAN AERT Wout",pts:40},
-    {pos:3,rider:"WÆRENSKJOLD Søren",pts:35},{pos:4,rider:"GIRMAAY Biniam",pts:30},
-    {pos:5,rider:"PITHIE Laurence",pts:25},{pos:6,rider:"AULAR Alberto",pts:20},
-    {pos:7,rider:"LAPORTE Christophe",pts:15},{pos:8,rider:"PHILIPSEN Jasper",pts:10},
-    {pos:10,rider:"PEDERSEN Mads",pts:2},
-  ],stages:[],dnfs:[]},
-  {name:"Ronde van Vlaanderen",type:"1.UWT",finals:[
-    {pos:1,rider:"POGAČAR Tadej",pts:60},{pos:2,rider:"VAN DER POEL Mathieu",pts:50},
-    {pos:3,rider:"EVENEPOEL Remco",pts:40},{pos:4,rider:"VAN AERT Wout",pts:35},
-    {pos:5,rider:"PEDERSEN Mads",pts:30},{pos:9,rider:"LAPORTE Christophe",pts:10},
-  ],stages:[],dnfs:[]},
-  {name:"Itzulia Basque Country",type:"2.UWT",finals:[
-    {pos:1,rider:"SEIXAS Paul",pts:60},{pos:2,rider:"LIPOWITZ Florian",pts:50},
-    {pos:3,rider:"JOHANNESSEN Tobias Halland",pts:40},{pos:6,rider:"BILBAO Pello",pts:25},
-    {pos:7,rider:"ROMO Javier",pts:20},{pos:10,rider:"VAUQUELIN Kévin",pts:5},
-  ],stages:[
-    {stage:1,rider:"SEIXAS Paul",pts:8},{stage:1,rider:"VAUQUELIN Kévin",pts:5},
-    {stage:2,rider:"SEIXAS Paul",pts:8},{stage:2,rider:"SKJELMOSE Mattias",pts:5},
-    {stage:2,rider:"ROGLIČ Primož",pts:3},{stage:4,rider:"ARANBURU Alex",pts:8},
-    {stage:4,rider:"JOHANNESSEN Tobias Halland",pts:5},{stage:4,rider:"SCARONI Christian",pts:3},
-    {stage:5,rider:"SEIXAS Paul",pts:8},{stage:5,rider:"LIPOWITZ Florian",pts:5},
-    {stage:5,rider:"ROMO Javier",pts:3},
-  ],dnfs:[]},
-  {name:"Parijs-Roubaix",type:"1.UWT",finals:[
-    {pos:1,rider:"VAN AERT Wout",pts:60},{pos:2,rider:"POGAČAR Tadej",pts:50},
-    {pos:4,rider:"VAN DER POEL Mathieu",pts:35},{pos:5,rider:"LAPORTE Christophe",pts:30},
-    {pos:7,rider:"PEDERSEN Mads",pts:20},
-  ],stages:[],dnfs:[]},
-  {name:"Brabantse Pijl",type:"1.Pro",finals:[
-    {pos:4,rider:"GREGOIRE Romain",pts:15},
-  ],stages:[],dnfs:[]},
-  {name:"Amstel Gold Race",type:"1.UWT",finals:[
-    {pos:1,rider:"EVENEPOEL Remco",pts:50},{pos:2,rider:"SKJELMOSE Mattias",pts:40},
-    {pos:4,rider:"GREGOIRE Romain",pts:30},{pos:6,rider:"SCHMID Mauro",pts:20},
-  ],stages:[],dnfs:[]},
-  {name:"Tour de Alps",type:"2.Pro",finals:[
-    {pos:1,rider:"PELLIZZARI Giulio",pts:40},{pos:2,rider:"BERNAL Egan",pts:30},
-    {pos:3,rider:"ARENSMAN Thymen",pts:25},{pos:4,rider:"STORER Michael",pts:20},
-  ],stages:[
-    {stage:1,rider:"PIDCOCK Thomas",pts:4},{stage:2,rider:"PELLIZZARI Giulio",pts:6},
-    {stage:2,rider:"ARENSMAN Thymen",pts:4},{stage:3,rider:"PIDCOCK Thomas",pts:6},
-    {stage:3,rider:"BERNAL Egan",pts:2},{stage:5,rider:"PELLIZZARI Giulio",pts:6},
-    {stage:5,rider:"BERNAL Egan",pts:4},{stage:5,rider:"STORER Michael",pts:2},
-  ],dnfs:[]},
-  {name:"Waalse Pijl",type:"1.UWT",finals:[
-    {pos:1,rider:"SEIXAS Paul",pts:50},{pos:2,rider:"SCHMID Mauro",pts:40},
-    {pos:3,rider:"TULETT Ben",pts:35},{pos:5,rider:"SKJELMOSE Mattias",pts:25},
-    {pos:8,rider:"MARTINEZ Lenny",pts:10},{pos:9,rider:"GREGOIRE Romain",pts:5},
-  ],stages:[],dnfs:[]},
-  {name:"Luik-Bastenaken-Luik",type:"1.UWT",finals:[
-    {pos:1,rider:"POGAČAR Tadej",pts:60},{pos:2,rider:"SEIXAS Paul",pts:50},
-    {pos:3,rider:"EVENEPOEL Remco",pts:40},{pos:5,rider:"BERNAL Egan",pts:30},
-    {pos:6,rider:"BILBAO Pello",pts:25},{pos:7,rider:"GREGOIRE Romain",pts:20},
-    {pos:8,rider:"SCARONI Christian",pts:15},{pos:9,rider:"JOHANNESSEN Tobias Halland",pts:10},
-  ],stages:[],dnfs:[]},
-  {name:"Ronde van Turkije",type:"2.Pro",finals:[],stages:[],dnfs:[]},
-  {name:"Tour de Romandie",type:"2.Pro",finals:[
-    {pos:1,rider:"POGAČAR Tadej",pts:60},{pos:2,rider:"LIPOWITZ Florian",pts:50},
-    {pos:3,rider:"MARTINEZ Lenny",pts:40},{pos:9,rider:"FORTUNATO Lorenzo",pts:10},
-  ],stages:[
-    {stage:1,rider:"POGAČAR Tadej",pts:8},{stage:1,rider:"LIPOWITZ Florian",pts:5},
-    {stage:1,rider:"MARTINEZ Lenny",pts:3},{stage:2,rider:"POGAČAR Tadej",pts:8},
-    {stage:4,rider:"POGAČAR Tadej",pts:8},{stage:4,rider:"LIPOWITZ Florian",pts:5},
-    {stage:5,rider:"POGAČAR Tadej",pts:8},{stage:5,rider:"LIPOWITZ Florian",pts:5},
-    {stage:5,rider:"ROGLIČ Primož",pts:3},
-  ],dnfs:[]},
-  {name:"Eschborn - Frankfurt",type:"1.UWT",finals:[
-    {pos:2,rider:"PIDCOCK Thomas",pts:40},{pos:3,rider:"TULETT Ben",pts:35},
-    {pos:4,rider:"BILBAO Pello",pts:30},
-  ],stages:[],dnfs:[]},
-  {name:"Giro d'Italia",type:"GT2",finals:[
-    {pos:1,rider:"VINGEGAARD Jonas",pts:12},{pos:2,rider:"GALL Felix",pts:8},
-    {pos:3,rider:"HINDLEY Jai",pts:5},{pos:4,rider:"ARENSMAN Thymen",pts:55},
-    {pos:5,rider:"GEE Derek",pts:50},{pos:7,rider:"STORER Michael",pts:40},
-    {pos:10,rider:"BERNAL Egan",pts:25},{pos:20,rider:"CICCONE Giulio",pts:1},
-  ],stages:[
-    {stage:1,rider:"MAGNIER Paul",pts:12},{stage:1,rider:"LUND ANDRESEN Tobias",pts:8},
-    {stage:1,rider:"MILAN Jonathan",pts:3},{stage:2,rider:"CICCONE Giulio",pts:5},
-    {stage:2,rider:"SCARONI Christian",pts:3},{stage:2,rider:"PELLIZZARI Giulio",pts:1},
-    {stage:3,rider:"MAGNIER Paul",pts:12},{stage:3,rider:"MILAN Jonathan",pts:8},
-    {stage:4,rider:"NARVAEZ Jhonatan",pts:12},{stage:4,rider:"AULAR Alberto",pts:8},
-    {stage:4,rider:"CICCONE Giulio",pts:5},{stage:6,rider:"MAGNIER Paul",pts:5},
-    {stage:7,rider:"VINGEGAARD Jonas",pts:12},{stage:7,rider:"GALL Felix",pts:8},
-    {stage:7,rider:"HINDLEY Jai",pts:5},{stage:7,rider:"PELLIZZARI Giulio",pts:3},
-    {stage:8,rider:"NARVAEZ Jhonatan",pts:12},{stage:9,rider:"VINGEGAARD Jonas",pts:12},
-    {stage:9,rider:"GALL Felix",pts:8},{stage:9,rider:"ARENSMAN Thymen",pts:3},
-    {stage:10,rider:"GANNA Filippo",pts:12},{stage:10,rider:"ARENSMAN Thymen",pts:8},
-    {stage:10,rider:"GEE Derek",pts:1},{stage:11,rider:"NARVAEZ Jhonatan",pts:12},
-    {stage:11,rider:"MAS Enric",pts:8},{stage:14,rider:"VINGEGAARD Jonas",pts:12},
-    {stage:14,rider:"GALL Felix",pts:8},{stage:14,rider:"HINDLEY Jai",pts:5},
-    {stage:14,rider:"PELLIZZARI Giulio",pts:1},{stage:15,rider:"MAGNIER Paul",pts:1},
-    {stage:16,rider:"VINGEGAARD Jonas",pts:12},{stage:16,rider:"GALL Felix",pts:8},
-    {stage:16,rider:"HINDLEY Jai",pts:5},{stage:16,rider:"ARENSMAN Thymen",pts:3},
-    {stage:16,rider:"GEE Derek",pts:1},{stage:18,rider:"MAGNIER Paul",pts:12},
-    {stage:18,rider:"MILAN Jonathan",pts:5},{stage:18,rider:"STRONG Corbin",pts:1},
-    {stage:19,rider:"GEE Derek",pts:8},{stage:19,rider:"CICCONE Giulio",pts:5},
-    {stage:19,rider:"GALL Felix",pts:3},{stage:19,rider:"VINGEGAARD Jonas",pts:1},
-    {stage:20,rider:"VINGEGAARD Jonas",pts:12},{stage:20,rider:"GALL Felix",pts:8},
-    {stage:20,rider:"HINDLEY Jai",pts:5},{stage:20,rider:"GEE Derek",pts:3},
-    {stage:20,rider:"ARENSMAN Thymen",pts:1},{stage:21,rider:"MILAN Jonathan",pts:12},
-  ],special:[
-    {label:"Sprint",rider:"MAGNIER Paul",pts:50},{label:"Sprint",rider:"MILAN Jonathan",pts:40},
-    {label:"Berg",rider:"CICCONE Giulio",pts:30},{label:"Berg",rider:"VINGEGAARD Jonas",pts:25},
-  ],dnfs:[]},
-  {name:"Ethias Tour de Wallonie",type:"2.Pro",finals:[
-    {pos:3,rider:"DE LIE Arnaud",pts:25},{pos:5,rider:"PITHIE Laurence",pts:15},
-  ],stages:[
-    {stage:1,rider:"MEEUS Jordi",pts:6},{stage:3,rider:"PITHIE Laurence",pts:6},
-    {stage:4,rider:"DE LIE Arnaud",pts:6},{stage:5,rider:"DE LIE Arnaud",pts:2},
-  ],dnfs:[]},
-  {name:"Critérium du Dauphiné",type:"2.UWT",finals:[],stages:[
-    {stage:3,rider:"JORGENSON Matteo",pts:8},{stage:3,rider:"VAUQUELIN Kévin",pts:5},
-    {stage:3,rider:"ONLEY Oscar",pts:3},{stage:4,rider:"SIMMONS Quinn",pts:8},
-  ],dnfs:[]},
-];
+const RACES_DATA = [{"name": "Cadel Evans Great Ocean Road Race", "start": "2026-02-01", "end": null, "stages": [{"stage": 1, "rider": "LUND ANDRESEN Tobias", "pts": 50.0}, {"stage": 2, "rider": "BRENNAN Matthew", "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": "SCHMID Mauro", "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": "PITHIE Laurence", "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Volta Comunitat Valenciana", "start": "2025-02-04", "end": "2025-02-08", "stages": [{"stage": 1, "rider": "GIRMAY Biniam", "pts": 6.0}, {"stage": 1, "rider": null, "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": "EVENEPOEL Remco", "pts": 6.0}, {"stage": 2, "rider": null, "pts": 4.0}, {"stage": 2, "rider": null, "pts": 2.0}, {"stage": 3, "rider": null, "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": null, "pts": 2.0}, {"stage": 4, "rider": "EVENEPOEL Remco", "pts": 6.0}, {"stage": 4, "rider": "ALMEIDA Joao", "pts": 4.0}, {"stage": 4, "rider": "PELLIZZARI Giulio", "pts": 2.0}, {"stage": 5, "rider": null, "pts": 6.0}, {"stage": 5, "rider": null, "pts": 4.0}, {"stage": 5, "rider": null, "pts": 2.0}], "finals": [{"pos": null, "rider": "ALMEIDA Joao", "pts": 30.0}, {"pos": null, "rider": "PELLIZZARI Giulio", "pts": 25.0}, {"pos": null, "rider": "TIBERI Antonio", "pts": 20.0}, {"pos": null, "rider": "MCNULTY Brandon", "pts": 15.0}, {"pos": null, "rider": null, "pts": 11.0}, {"pos": null, "rider": null, "pts": 7.0}, {"pos": null, "rider": null, "pts": 5.0}, {"pos": null, "rider": null, "pts": 3.0}, {"pos": null, "rider": null, "pts": 1.0}], "specials": []}, {"name": "Tour of Oman", "start": "2025-02-07", "end": "2025-02-11", "stages": [{"stage": 1, "rider": null, "pts": 6.0}, {"stage": 1, "rider": null, "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": "SCHMID Mauro", "pts": 6.0}, {"stage": 2, "rider": "SCARONI Christian", "pts": 4.0}, {"stage": 2, "rider": null, "pts": 2.0}, {"stage": 3, "rider": null, "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": null, "pts": 2.0}, {"stage": 4, "rider": null, "pts": 6.0}, {"stage": 4, "rider": null, "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": null, "pts": 6.0}, {"stage": 5, "rider": "SCARONI Christian", "pts": 4.0}, {"stage": 5, "rider": null, "pts": 2.0}], "finals": [{"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": "YATES Adam", "pts": 25.0}, {"pos": null, "rider": "SCHMID Mauro", "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 11.0}, {"pos": null, "rider": null, "pts": 7.0}, {"pos": null, "rider": null, "pts": 5.0}, {"pos": null, "rider": null, "pts": 3.0}, {"pos": null, "rider": null, "pts": 1.0}], "specials": []}, {"name": "UAE Tour", "start": "2026-02-16", "end": "2026-02-22", "stages": [{"stage": 1, "rider": "DEL TORO Isaac", "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": "TIBERI Antonio", "pts": 3.0}, {"stage": 2, "rider": "EVENEPOEL Remco", "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": "TIBERI Antonio", "pts": 8.0}, {"stage": 3, "rider": "DEL TORO Isaac", "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": "MILAN Jonathan", "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": "MILAN Jonathan", "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": "DEL TORO Isaac", "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": "GALL Felix", "pts": 3.0}, {"stage": 7, "rider": "MILAN Jonathan", "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}], "finals": [{"pos": 2, "rider": "TIBERI Antonio", "pts": 50.0}, {"pos": 3, "rider": null, "pts": 40.0}, {"pos": 4, "rider": null, "pts": 35.0}, {"pos": 5, "rider": "GALL Felix", "pts": 30.0}, {"pos": 6, "rider": null, "pts": 25.0}, {"pos": 7, "rider": "GEE Derek", "pts": 20.0}, {"pos": 8, "rider": null, "pts": 15.0}, {"pos": 9, "rider": "JOHANNESSEN Tobias Halland", "pts": 10.0}, {"pos": 10, "rider": "EVENEPOEL Remco", "pts": 5.0}], "specials": []}, {"name": "Clasica Jaen", "start": "2026-02-16", "end": null, "stages": [{"stage": 1, "rider": "WELLENS Tim", "pts": 30.0}, {"stage": 2, "rider": "PIDCOCK Thomas", "pts": 25.0}, {"stage": 3, "rider": null, "pts": 20.0}, {"stage": 4, "rider": null, "pts": 15.0}, {"stage": 5, "rider": null, "pts": 11.0}, {"stage": 6, "rider": "BILBAO Pello", "pts": 7.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": "KUBIŠ Lukáš", "pts": 2.0}, {"stage": 10, "rider": null, "pts": 1.0}], "finals": [], "specials": []}, {"name": "Vuelta a Andalucia Ruta del Sol", "start": "2025-02-18", "end": "2025-02-23", "stages": [{"stage": 1, "rider": "LAPORTE Christophe", "pts": 6.0}, {"stage": 1, "rider": null, "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": null, "pts": 6.0}, {"stage": 2, "rider": null, "pts": 4.0}, {"stage": 2, "rider": "ARANBURU Alex", "pts": 2.0}, {"stage": 3, "rider": "FRETIN Milan", "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": "LAPORTE Christophe", "pts": 2.0}, {"stage": 4, "rider": null, "pts": 6.0}, {"stage": 4, "rider": "WÆRENSKJOLD Søren", "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": "PIDCOCK Thomas", "pts": 6.0}, {"stage": 5, "rider": "CHRISTEN Jan", "pts": 4.0}, {"stage": 5, "rider": "GREGOIRE Romain", "pts": 2.0}], "finals": [{"pos": 2, "rider": null, "pts": 30.0}, {"pos": 3, "rider": "PIDCOCK Thomas", "pts": 25.0}, {"pos": 4, "rider": "CHRISTEN Jan", "pts": 20.0}, {"pos": 5, "rider": "GREGOIRE Romain", "pts": 15.0}, {"pos": 6, "rider": "ARANBURU Alex", "pts": 11.0}, {"pos": 7, "rider": null, "pts": 7.0}, {"pos": 8, "rider": null, "pts": 5.0}, {"pos": 9, "rider": "WELLENS Tim", "pts": 3.0}, {"pos": 10, "rider": null, "pts": 1.0}], "specials": []}, {"name": "Volta ao Algarve", "start": "2026-02-18", "end": "2026-02-22", "stages": [{"stage": 1, "rider": "MAGNIER Paul", "pts": 6.0}, {"stage": 1, "rider": "MEEUS Jordi", "pts": 4.0}, {"stage": 1, "rider": "BITTNER Pavel", "pts": 2.0}, {"stage": 2, "rider": "SEIXAS Paul", "pts": 6.0}, {"stage": 2, "rider": "AYUSO Juan", "pts": 4.0}, {"stage": 2, "rider": "ALMEIDA Joao", "pts": 2.0}, {"stage": 3, "rider": "GANNA Filippo", "pts": 6.0}, {"stage": 3, "rider": "AYUSO Juan", "pts": 4.0}, {"stage": 3, "rider": null, "pts": 2.0}, {"stage": 4, "rider": "MAGNIER Paul", "pts": 6.0}, {"stage": 4, "rider": "MEEUS Jordi", "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": "AYUSO Juan", "pts": 6.0}, {"stage": 5, "rider": "ONLEY Oscar", "pts": 4.0}, {"stage": 5, "rider": "SEIXAS Paul", "pts": 2.0}], "finals": [{"pos": 2, "rider": "SEIXAS Paul", "pts": 30.0}, {"pos": 3, "rider": "ALMEIDA Joao", "pts": 25.0}, {"pos": 4, "rider": "ONLEY Oscar", "pts": 20.0}, {"pos": 5, "rider": "VAUQUELIN Kévin", "pts": 15.0}, {"pos": 6, "rider": "RICCITELLO Matthew", "pts": 11.0}, {"pos": 7, "rider": null, "pts": 7.0}, {"pos": 8, "rider": "LIPOWITZ Florian", "pts": 5.0}, {"pos": 9, "rider": "ARENSMAN Thymen", "pts": 3.0}, {"pos": 10, "rider": null, "pts": 1.0}], "specials": []}, {"name": "Faun Ardeche", "start": "2026-02-28", "end": null, "stages": [{"stage": 1, "rider": "SEIXAS Paul", "pts": 30.0}, {"stage": 2, "rider": "CHRISTEN Jan", "pts": 25.0}, {"stage": 3, "rider": "MARTINEZ Lenny", "pts": 20.0}, {"stage": 4, "rider": "JORGENSON Matteo", "pts": 15.0}, {"stage": 5, "rider": "SKJELMOSE Mattias", "pts": 11.0}, {"stage": 6, "rider": null, "pts": 7.0}, {"stage": 7, "rider": "BERNAL Egan", "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 2.0}, {"stage": 10, "rider": null, "pts": 1.0}], "finals": [], "specials": []}, {"name": "Omloop Het Nieuwsblad", "start": "2026-02-28", "end": null, "stages": [{"stage": 1, "rider": "VAN DER POEL Mathieu", "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": "LAPORTE Christophe", "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": "LUND ANDRESEN Tobias", "pts": 20.0}, {"stage": 7, "rider": "MEEUS Jordi", "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Kuurne-Brussel-Kuurne", "start": "2026-03-01", "end": null, "stages": [{"stage": 1, "rider": "BRENNAN Matthew", "pts": 30.0}, {"stage": 2, "rider": null, "pts": 25.0}, {"stage": 3, "rider": null, "pts": 20.0}, {"stage": 4, "rider": null, "pts": 15.0}, {"stage": 5, "rider": null, "pts": 11.0}, {"stage": 6, "rider": null, "pts": 7.0}, {"stage": 7, "rider": "LUND ANDRESEN Tobias", "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 2.0}, {"stage": 10, "rider": "MEEUS Jordi", "pts": 1.0}], "finals": [], "specials": []}, {"name": "Ename Samyn Classic", "start": "2026-03-03", "end": null, "stages": [{"stage": 1, "rider": "MEEUS Jordi", "pts": 20.0}, {"stage": 2, "rider": null, "pts": 17.0}, {"stage": 3, "rider": null, "pts": 15.0}, {"stage": 4, "rider": null, "pts": 11.0}, {"stage": 5, "rider": "KUBIŠ Lukáš", "pts": 8.0}, {"stage": 6, "rider": null, "pts": 6.0}, {"stage": 7, "rider": null, "pts": 4.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 2.0}, {"stage": 10, "rider": null, "pts": 1.0}], "finals": [], "specials": []}, {"name": "Strade Bianche", "start": "2026-03-07", "end": null, "stages": [{"stage": 1, "rider": "POGAČAR Tadej", "pts": 50.0}, {"stage": 2, "rider": "SEIXAS Paul", "pts": 40.0}, {"stage": 3, "rider": "DEL TORO Isaac", "pts": 35.0}, {"stage": 4, "rider": "GREGOIRE Romain", "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": "CHRISTEN Jan", "pts": 20.0}, {"stage": 7, "rider": "PIDCOCK Thomas", "pts": 15.0}, {"stage": 8, "rider": "JORGENSON Matteo", "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": "VAN AERT Wout", "pts": 2.0}], "finals": [], "specials": []}, {"name": "Paris - Nice", "start": "2026-03-08", "end": "2026-03-15", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": "AULAR Alberto", "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": "PITHIE Laurence", "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": "VAUQUELIN Kévin", "pts": 8.0}, {"stage": 3, "rider": "ONLEY Oscar", "pts": 8.0}, {"stage": 3, "rider": "AYUSO Juan", "pts": 5.0}, {"stage": 3, "rider": "SKUJINS Toms", "pts": 5.0}, {"stage": 3, "rider": "PRODHOMME Nicolas", "pts": 3.0}, {"stage": 4, "rider": "VINGEGAARD Jonas", "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": "VINGEGAARD Jonas", "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 7, "rider": null, "pts": 8.0}, {"stage": 7, "rider": "GIRMAY Biniam", "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}, {"stage": 8, "rider": "MARTINEZ Lenny", "pts": 8.0}, {"stage": 8, "rider": "VINGEGAARD Jonas", "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}], "finals": [{"pos": 2, "rider": null, "pts": 50.0}, {"pos": 3, "rider": null, "pts": 40.0}, {"pos": 4, "rider": "VAUQUELIN Kévin", "pts": 35.0}, {"pos": 5, "rider": "MARTINEZ Lenny", "pts": 30.0}, {"pos": 6, "rider": null, "pts": 25.0}, {"pos": 7, "rider": null, "pts": 20.0}, {"pos": 8, "rider": null, "pts": 15.0}, {"pos": 9, "rider": null, "pts": 10.0}, {"pos": 10, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Tirreno-Adriatico", "start": "2026-03-09", "end": "2026-03-15", "stages": [{"stage": 1, "rider": "GANNA Filippo", "pts": 8.0}, {"stage": 1, "rider": "ARENSMAN Thymen", "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": "VAN DER POEL Mathieu", "pts": 8.0}, {"stage": 2, "rider": "DEL TORO Isaac", "pts": 5.0}, {"stage": 2, "rider": "PELLIZZARI Giulio", "pts": 3.0}, {"stage": 3, "rider": "LUND ANDRESEN Tobias", "pts": 8.0}, {"stage": 3, "rider": "DE LIE Arnaud", "pts": 5.0}, {"stage": 3, "rider": "PHILIPSEN Jasper", "pts": 3.0}, {"stage": 4, "rider": "VAN DER POEL Mathieu", "pts": 8.0}, {"stage": 4, "rider": "PELLIZZARI Giulio", "pts": 5.0}, {"stage": 4, "rider": "JOHANNESSEN Tobias Halland", "pts": 3.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": "DEL TORO Isaac", "pts": 5.0}, {"stage": 5, "rider": "JORGENSON Matteo", "pts": 3.0}, {"stage": 6, "rider": "DEL TORO Isaac", "pts": 8.0}, {"stage": 6, "rider": "JOHANNESSEN Tobias Halland", "pts": 5.0}, {"stage": 6, "rider": "JORGENSON Matteo", "pts": 3.0}, {"stage": 7, "rider": "MILAN Jonathan", "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}], "finals": [{"pos": 2, "rider": "JORGENSON Matteo", "pts": 50.0}, {"pos": 3, "rider": "PELLIZZARI Giulio", "pts": 40.0}, {"pos": 4, "rider": "JOHANNESSEN Tobias Halland", "pts": 35.0}, {"pos": 5, "rider": "ROGLIČ Primož", "pts": 30.0}, {"pos": 6, "rider": "CICCONE Giulio", "pts": 25.0}, {"pos": 7, "rider": "BUITRAGO Santiago", "pts": 20.0}, {"pos": 8, "rider": "HEALY Ben", "pts": 15.0}, {"pos": 9, "rider": null, "pts": 10.0}, {"pos": 10, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Milaan - San Remo", "start": "2026-03-21", "end": null, "stages": [{"stage": 1, "rider": "POGAČAR Tadej", "pts": 60.0}, {"stage": 2, "rider": "PIDCOCK Thomas", "pts": 50.0}, {"stage": 3, "rider": "VAN AERT Wout", "pts": 40.0}, {"stage": 4, "rider": "PEDERSEN Mads", "pts": 35.0}, {"stage": 5, "rider": "STRONG Corbin", "pts": 30.0}, {"stage": 6, "rider": null, "pts": 25.0}, {"stage": 7, "rider": null, "pts": 20.0}, {"stage": 8, "rider": "VAN DER POEL Mathieu", "pts": 15.0}, {"stage": 9, "rider": null, "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "Volta Ciclista a Catalunya", "start": "2026-03-23", "end": "2026-03-29", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": "EVENEPOEL Remco", "pts": 5.0}, {"stage": 1, "rider": "PIDCOCK Thomas", "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": "PIDCOCK Thomas", "pts": 3.0}, {"stage": 5, "rider": "VINGEGAARD Jonas", "pts": 8.0}, {"stage": 5, "rider": "GALL Felix", "pts": 5.0}, {"stage": 5, "rider": "MARTINEZ Lenny", "pts": 3.0}, {"stage": 6, "rider": "VINGEGAARD Jonas", "pts": 8.0}, {"stage": 6, "rider": "MARTINEZ Lenny", "pts": 5.0}, {"stage": 6, "rider": "LIPOWITZ Florian", "pts": 3.0}, {"stage": 7, "rider": null, "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": "EVENEPOEL Remco", "pts": 3.0}], "finals": [{"pos": 2, "rider": "MARTINEZ Lenny", "pts": 50.0}, {"pos": 3, "rider": "LIPOWITZ Florian", "pts": 40.0}, {"pos": 4, "rider": null, "pts": 35.0}, {"pos": 5, "rider": "EVENEPOEL Remco", "pts": 30.0}, {"pos": 6, "rider": "GALL Felix", "pts": 25.0}, {"pos": 7, "rider": "SKJELMOSE Mattias", "pts": 20.0}, {"pos": 8, "rider": null, "pts": 15.0}, {"pos": 9, "rider": "RICCITELLO Matthew", "pts": 10.0}, {"pos": 10, "rider": "CARAPAZ Richard", "pts": 5.0}], "specials": []}, {"name": "Ronde van Brugge", "start": "2026-03-25", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": "PHILIPSEN Jasper", "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": "BITTNER Pavel", "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "E3 Saxo Classic", "start": "2026-03-27", "end": null, "stages": [{"stage": 1, "rider": "VAN DER POEL Mathieu", "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": "LUND ANDRESEN Tobias", "pts": 20.0}, {"stage": 7, "rider": "LAPORTE Christophe", "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": "PEDERSEN Mads", "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "In Flanders Field", "start": "2026-03-29", "end": null, "stages": [{"stage": 1, "rider": "PHILIPSEN Jasper", "pts": 50.0}, {"stage": 2, "rider": "LUND ANDRESEN Tobias", "pts": 40.0}, {"stage": 3, "rider": "LAPORTE Christophe", "pts": 35.0}, {"stage": 4, "rider": "DE LIE Arnaud", "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Dwars door Vlaanderen", "start": "2026-04-01", "end": null, "stages": [{"stage": 1, "rider": "GANNA Filippo", "pts": 50.0}, {"stage": 2, "rider": "VAN AERT Wout", "pts": 40.0}, {"stage": 3, "rider": "WÆRENSKJOLD Søren", "pts": 35.0}, {"stage": 4, "rider": "GIRMAY Biniam", "pts": 30.0}, {"stage": 5, "rider": "PITHIE Laurence", "pts": 25.0}, {"stage": 6, "rider": "AULAR Alberto", "pts": 20.0}, {"stage": 7, "rider": "LAPORTE Christophe", "pts": 15.0}, {"stage": 8, "rider": "PHILIPSEN Jasper", "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": "PEDERSEN Mads", "pts": 2.0}], "finals": [], "specials": []}, {"name": "Ronde van Vlaanderen", "start": "2026-04-05", "end": null, "stages": [{"stage": 1, "rider": "POGAČAR Tadej", "pts": 60.0}, {"stage": 2, "rider": "VAN DER POEL Mathieu", "pts": 50.0}, {"stage": 3, "rider": "EVENEPOEL Remco", "pts": 40.0}, {"stage": 4, "rider": "VAN AERT Wout", "pts": 35.0}, {"stage": 5, "rider": "PEDERSEN Mads", "pts": 30.0}, {"stage": 6, "rider": null, "pts": 25.0}, {"stage": 7, "rider": null, "pts": 20.0}, {"stage": 8, "rider": null, "pts": 15.0}, {"stage": 9, "rider": "LAPORTE Christophe", "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "Itzulia Basque Country", "start": "2026-04-06", "end": "2026-04-12", "stages": [{"stage": 1, "rider": "SEIXAS Paul", "pts": 8.0}, {"stage": 1, "rider": "VAUQUELIN Kévin", "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": "SEIXAS Paul", "pts": 8.0}, {"stage": 2, "rider": "SKJELMOSE Mattias", "pts": 5.0}, {"stage": 2, "rider": "ROGLIČ Primož", "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": "ARANBURU Alex", "pts": 8.0}, {"stage": 4, "rider": "JOHANNESSEN Tobias Halland", "pts": 5.0}, {"stage": 4, "rider": "SCARONI Christian", "pts": 3.0}, {"stage": 5, "rider": "SEIXAS Paul", "pts": 8.0}, {"stage": 5, "rider": "LIPOWITZ Florian", "pts": 5.0}, {"stage": 5, "rider": "ROMO Javier", "pts": 3.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}], "finals": [{"pos": null, "rider": "LIPOWITZ Florian", "pts": 50.0}, {"pos": null, "rider": "JOHANNESSEN Tobias Halland", "pts": 40.0}, {"pos": null, "rider": null, "pts": 35.0}, {"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": "BILBAO Pello", "pts": 25.0}, {"pos": null, "rider": "ROMO Javier", "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 10.0}, {"pos": null, "rider": "VAUQUELIN Kévin", "pts": 5.0}], "specials": []}, {"name": "Parijs-Roubaix", "start": "2026-04-12", "end": null, "stages": [{"stage": 1, "rider": "VAN AERT Wout", "pts": 60.0}, {"stage": 2, "rider": "POGAČAR Tadej", "pts": 50.0}, {"stage": 3, "rider": null, "pts": 40.0}, {"stage": 4, "rider": "VAN DER POEL Mathieu", "pts": 35.0}, {"stage": 5, "rider": "LAPORTE Christophe", "pts": 30.0}, {"stage": 6, "rider": null, "pts": 25.0}, {"stage": 7, "rider": "PEDERSEN Mads", "pts": 20.0}, {"stage": 8, "rider": null, "pts": 15.0}, {"stage": 9, "rider": null, "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "Brabantse Pijl", "start": "2026-04-17", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 30.0}, {"stage": 2, "rider": null, "pts": 25.0}, {"stage": 3, "rider": null, "pts": 20.0}, {"stage": 4, "rider": "GREGOIRE Romain", "pts": 15.0}, {"stage": 5, "rider": null, "pts": 11.0}, {"stage": 6, "rider": null, "pts": 7.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 2.0}, {"stage": 10, "rider": null, "pts": 1.0}], "finals": [], "specials": []}, {"name": "Amstel Gold Race", "start": "2026-04-19", "end": null, "stages": [{"stage": 1, "rider": "EVENEPOEL Remco", "pts": 50.0}, {"stage": 2, "rider": "SKJELMOSE Mattias", "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": "GREGOIRE Romain", "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": "SCHMID Mauro", "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Tour de Alps", "start": "2026-04-20", "end": "2026-04-24", "stages": [{"stage": 1, "rider": null, "pts": 6.0}, {"stage": 1, "rider": "PIDCOCK Thomas", "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": "PELLIZZARI Giulio", "pts": 6.0}, {"stage": 2, "rider": "ARENSMAN Thymen", "pts": 4.0}, {"stage": 2, "rider": null, "pts": 2.0}, {"stage": 3, "rider": "PIDCOCK Thomas", "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": "BERNAL Egan", "pts": 2.0}, {"stage": 4, "rider": null, "pts": 6.0}, {"stage": 4, "rider": null, "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": "PELLIZZARI Giulio", "pts": 6.0}, {"stage": 5, "rider": "BERNAL Egan", "pts": 4.0}, {"stage": 5, "rider": "STORER Michael", "pts": 2.0}], "finals": [{"pos": null, "rider": "BERNAL Egan", "pts": 30.0}, {"pos": null, "rider": "ARENSMAN Thymen", "pts": 25.0}, {"pos": null, "rider": "STORER Michael", "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 11.0}, {"pos": null, "rider": null, "pts": 7.0}, {"pos": null, "rider": null, "pts": 5.0}, {"pos": null, "rider": null, "pts": 3.0}, {"pos": null, "rider": null, "pts": 1.0}], "specials": []}, {"name": "Waalse Pijl", "start": "2026-04-22", "end": null, "stages": [{"stage": 1, "rider": "SEIXAS Paul", "pts": 50.0}, {"stage": 2, "rider": "SCHMID Mauro", "pts": 40.0}, {"stage": 3, "rider": "TULETT Ben", "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": "SKJELMOSE Mattias", "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": "MARTINEZ Lenny", "pts": 10.0}, {"stage": 9, "rider": "GREGOIRE Romain", "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Luik-Bastenaken-Luik", "start": "2026-04-26", "end": null, "stages": [{"stage": 1, "rider": "POGAČAR Tadej", "pts": 60.0}, {"stage": 2, "rider": "SEIXAS Paul", "pts": 50.0}, {"stage": 3, "rider": "EVENEPOEL Remco", "pts": 40.0}, {"stage": 4, "rider": null, "pts": 35.0}, {"stage": 5, "rider": "BERNAL Egan", "pts": 30.0}, {"stage": 6, "rider": "BILBAO Pello", "pts": 25.0}, {"stage": 7, "rider": "GREGOIRE Romain", "pts": 20.0}, {"stage": 8, "rider": "SCARONI Christian", "pts": 15.0}, {"stage": 9, "rider": "JOHANNESSEN Tobias Halland", "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "Ronde van Turkije", "start": "2026-04-26", "end": "2026-05-03", "stages": [{"stage": 1, "rider": null, "pts": 6.0}, {"stage": 1, "rider": null, "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": null, "pts": 6.0}, {"stage": 2, "rider": null, "pts": 4.0}, {"stage": 2, "rider": null, "pts": 2.0}, {"stage": 3, "rider": null, "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": null, "pts": 2.0}, {"stage": 4, "rider": null, "pts": 6.0}, {"stage": 4, "rider": null, "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": null, "pts": 6.0}, {"stage": 5, "rider": null, "pts": 4.0}, {"stage": 5, "rider": null, "pts": 2.0}, {"stage": 6, "rider": null, "pts": 6.0}, {"stage": 6, "rider": null, "pts": 4.0}, {"stage": 6, "rider": null, "pts": 2.0}, {"stage": 7, "rider": null, "pts": 6.0}, {"stage": 7, "rider": null, "pts": 4.0}, {"stage": 7, "rider": null, "pts": 2.0}, {"stage": 8, "rider": null, "pts": 6.0}, {"stage": 8, "rider": null, "pts": 4.0}, {"stage": 8, "rider": null, "pts": 2.0}], "finals": [{"pos": 2, "rider": null, "pts": 30.0}, {"pos": 3, "rider": null, "pts": 25.0}, {"pos": 4, "rider": null, "pts": 20.0}, {"pos": 5, "rider": null, "pts": 15.0}, {"pos": 6, "rider": null, "pts": 11.0}, {"pos": 7, "rider": null, "pts": 7.0}, {"pos": 8, "rider": null, "pts": 5.0}, {"pos": 9, "rider": null, "pts": 3.0}, {"pos": 10, "rider": null, "pts": 1.0}], "specials": []}, {"name": "Tour de Romandie", "start": "2026-04-28", "end": "2026-05-03", "stages": [{"stage": null, "rider": null, "pts": 8.0}, {"stage": null, "rider": null, "pts": 5.0}, {"stage": null, "rider": null, "pts": 3.0}, {"stage": 1, "rider": "POGAČAR Tadej", "pts": 8.0}, {"stage": 1, "rider": "LIPOWITZ Florian", "pts": 5.0}, {"stage": 1, "rider": "MARTINEZ Lenny", "pts": 3.0}, {"stage": 2, "rider": "POGAČAR Tadej", "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": "POGAČAR Tadej", "pts": 8.0}, {"stage": 4, "rider": "LIPOWITZ Florian", "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": "POGAČAR Tadej", "pts": 8.0}, {"stage": 5, "rider": "LIPOWITZ Florian", "pts": 5.0}, {"stage": 5, "rider": "ROGLIČ Primož", "pts": 3.0}], "finals": [{"pos": 2, "rider": "LIPOWITZ Florian", "pts": 50.0}, {"pos": 3, "rider": "MARTINEZ Lenny", "pts": 40.0}, {"pos": 4, "rider": null, "pts": 35.0}, {"pos": 5, "rider": null, "pts": 30.0}, {"pos": 6, "rider": null, "pts": 25.0}, {"pos": 7, "rider": null, "pts": 20.0}, {"pos": 8, "rider": null, "pts": 15.0}, {"pos": 9, "rider": "FORTUNATO Lorenzo", "pts": 10.0}, {"pos": 10, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Eschborn - Frankfurt", "start": "2026-05-01", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": "PIDCOCK Thomas", "pts": 40.0}, {"stage": 3, "rider": "TULETT Ben", "pts": 35.0}, {"stage": 4, "rider": "BILBAO Pello", "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Giro d'Italia", "start": "2026-05-08", "end": "2026-05-31", "stages": [{"stage": 1, "rider": "MAGNIER Paul", "pts": 12.0}, {"stage": 1, "rider": "LUND ANDRESEN Tobias", "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": "MILAN Jonathan", "pts": 3.0}, {"stage": 1, "rider": null, "pts": 1.0}, {"stage": 2, "rider": null, "pts": 12.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": "CICCONE Giulio", "pts": 5.0}, {"stage": 2, "rider": "SCARONI Christian", "pts": 3.0}, {"stage": 2, "rider": "PELLIZZARI Giulio", "pts": 1.0}, {"stage": 3, "rider": "MAGNIER Paul", "pts": 12.0}, {"stage": 3, "rider": "MILAN Jonathan", "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 1.0}, {"stage": 4, "rider": "NARVAEZ Jhonatan", "pts": 12.0}, {"stage": 4, "rider": "AULAR Alberto", "pts": 8.0}, {"stage": 4, "rider": "CICCONE Giulio", "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 1.0}, {"stage": 5, "rider": null, "pts": 12.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 5, "rider": "SCARONI Christian", "pts": 1.0}, {"stage": 6, "rider": null, "pts": 12.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": "MAGNIER Paul", "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 1.0}, {"stage": 7, "rider": "VINGEGAARD Jonas", "pts": 12.0}, {"stage": 7, "rider": "GALL Felix", "pts": 8.0}, {"stage": 7, "rider": "HINDLEY Jai", "pts": 5.0}, {"stage": 7, "rider": "PELLIZZARI Giulio", "pts": 3.0}, {"stage": 7, "rider": null, "pts": 1.0}, {"stage": 8, "rider": "NARVAEZ Jhonatan", "pts": 12.0}, {"stage": 8, "rider": null, "pts": 8.0}, {"stage": 8, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 8, "rider": null, "pts": 1.0}, {"stage": 9, "rider": "VINGEGAARD Jonas", "pts": 12.0}, {"stage": 9, "rider": "GALL Felix", "pts": 8.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 9, "rider": "ARENSMAN Thymen", "pts": 3.0}, {"stage": 9, "rider": null, "pts": 1.0}, {"stage": 10, "rider": "GANNA Filippo", "pts": 12.0}, {"stage": 10, "rider": "ARENSMAN Thymen", "pts": 8.0}, {"stage": 10, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 3.0}, {"stage": 10, "rider": "GEE Derek", "pts": 1.0}, {"stage": 11, "rider": "NARVAEZ Jhonatan", "pts": 12.0}, {"stage": 11, "rider": "MAS Enric", "pts": 8.0}, {"stage": 11, "rider": null, "pts": 5.0}, {"stage": 11, "rider": null, "pts": 3.0}, {"stage": 11, "rider": null, "pts": 1.0}, {"stage": 12, "rider": null, "pts": 12.0}, {"stage": 12, "rider": null, "pts": 8.0}, {"stage": 12, "rider": null, "pts": 5.0}, {"stage": 12, "rider": null, "pts": 3.0}, {"stage": 12, "rider": null, "pts": 1.0}, {"stage": 13, "rider": null, "pts": 12.0}, {"stage": 13, "rider": null, "pts": 8.0}, {"stage": 13, "rider": null, "pts": 5.0}, {"stage": 13, "rider": null, "pts": 3.0}, {"stage": 13, "rider": null, "pts": 1.0}, {"stage": 14, "rider": "VINGEGAARD Jonas", "pts": 12.0}, {"stage": 14, "rider": "GALL Felix", "pts": 8.0}, {"stage": 14, "rider": "HINDLEY Jai", "pts": 5.0}, {"stage": 14, "rider": null, "pts": 3.0}, {"stage": 14, "rider": "PELLIZZARI Giulio", "pts": 1.0}, {"stage": 15, "rider": null, "pts": 12.0}, {"stage": 15, "rider": null, "pts": 8.0}, {"stage": 15, "rider": null, "pts": 5.0}, {"stage": 15, "rider": null, "pts": 3.0}, {"stage": 15, "rider": "MAGNIER Paul", "pts": 1.0}, {"stage": 16, "rider": "VINGEGAARD Jonas", "pts": 12.0}, {"stage": 16, "rider": "GALL Felix", "pts": 8.0}, {"stage": 16, "rider": "HINDLEY Jai", "pts": 5.0}, {"stage": 16, "rider": "ARENSMAN Thymen", "pts": 3.0}, {"stage": 16, "rider": "GEE Derek", "pts": 1.0}, {"stage": 17, "rider": null, "pts": 12.0}, {"stage": 17, "rider": null, "pts": 8.0}, {"stage": 17, "rider": null, "pts": 5.0}, {"stage": 17, "rider": null, "pts": 3.0}, {"stage": 17, "rider": null, "pts": 1.0}, {"stage": 18, "rider": "MAGNIER Paul", "pts": 12.0}, {"stage": 18, "rider": null, "pts": 8.0}, {"stage": 18, "rider": "MILAN Jonathan", "pts": 5.0}, {"stage": 18, "rider": null, "pts": 3.0}, {"stage": 18, "rider": "STRONG Corbin", "pts": 1.0}, {"stage": 19, "rider": null, "pts": 12.0}, {"stage": 19, "rider": "GEE Derek", "pts": 8.0}, {"stage": 19, "rider": "CICCONE Giulio", "pts": 5.0}, {"stage": 19, "rider": "GALL Felix", "pts": 3.0}, {"stage": 19, "rider": "VINGEGAARD Jonas", "pts": 1.0}, {"stage": 20, "rider": "VINGEGAARD Jonas", "pts": 12.0}, {"stage": 20, "rider": "GALL Felix", "pts": 8.0}, {"stage": 20, "rider": "HINDLEY Jai", "pts": 5.0}, {"stage": 20, "rider": "GEE Derek", "pts": 3.0}, {"stage": 20, "rider": "ARENSMAN Thymen", "pts": 1.0}, {"stage": 21, "rider": "MILAN Jonathan", "pts": 12.0}, {"stage": 21, "rider": null, "pts": 8.0}, {"stage": 21, "rider": null, "pts": 5.0}, {"stage": 21, "rider": null, "pts": 3.0}, {"stage": 21, "rider": null, "pts": 1.0}], "finals": [{"pos": 2, "rider": "GALL Felix", "pts": 8.0}, {"pos": 3, "rider": "HINDLEY Jai", "pts": 5.0}, {"pos": 4, "rider": "ARENSMAN Thymen", "pts": 55.0}, {"pos": 5, "rider": "GEE Derek", "pts": 50.0}, {"pos": 6, "rider": null, "pts": 45.0}, {"pos": 7, "rider": "STORER Michael", "pts": 40.0}, {"pos": 8, "rider": null, "pts": 35.0}, {"pos": 9, "rider": null, "pts": 30.0}, {"pos": 10, "rider": "BERNAL Egan", "pts": 25.0}, {"pos": 11, "rider": null, "pts": 20.0}, {"pos": 12, "rider": null, "pts": 15.0}, {"pos": 13, "rider": null, "pts": 12.0}, {"pos": 14, "rider": null, "pts": 10.0}, {"pos": 15, "rider": null, "pts": 8.0}, {"pos": 16, "rider": null, "pts": 6.0}, {"pos": 17, "rider": null, "pts": 4.0}, {"pos": 18, "rider": null, "pts": 3.0}, {"pos": 19, "rider": null, "pts": 2.0}, {"pos": 20, "rider": "CICCONE Giulio", "pts": 1.0}, {"pos": null, "rider": "MILAN Jonathan", "pts": 40.0}, {"pos": null, "rider": null, "pts": 35.0}, {"pos": null, "rider": "VINGEGAARD Jonas", "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}, {"pos": null, "rider": null, "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}], "specials": [{"label": "Sprint", "pos": null, "rider": "MAGNIER Paul", "pts": 50.0}, {"label": "Berg", "pos": null, "rider": "CICCONE Giulio", "pts": 30.0}, {"label": "Jongeren", "pos": null, "rider": null, "pts": 30.0}]}, {"name": "Ethias Tour de Wallonie", "start": "2026-06-01", "end": "2026-06-05", "stages": [{"stage": 1, "rider": "MEEUS Jordi", "pts": 6.0}, {"stage": 1, "rider": null, "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": null, "pts": 6.0}, {"stage": 2, "rider": null, "pts": 4.0}, {"stage": 2, "rider": null, "pts": 2.0}, {"stage": 3, "rider": "PITHIE Laurence", "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": null, "pts": 2.0}, {"stage": 4, "rider": "DE LIE Arnaud", "pts": 6.0}, {"stage": 4, "rider": null, "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": null, "pts": 6.0}, {"stage": 5, "rider": null, "pts": 4.0}, {"stage": 5, "rider": "DE LIE Arnaud", "pts": 2.0}], "finals": [{"pos": 2, "rider": null, "pts": 30.0}, {"pos": 3, "rider": "DE LIE Arnaud", "pts": 25.0}, {"pos": 4, "rider": null, "pts": 20.0}, {"pos": 5, "rider": "PITHIE Laurence", "pts": 15.0}, {"pos": 6, "rider": null, "pts": 11.0}, {"pos": 7, "rider": null, "pts": 7.0}, {"pos": 8, "rider": null, "pts": 5.0}, {"pos": 9, "rider": null, "pts": 3.0}, {"pos": 10, "rider": null, "pts": 1.0}], "specials": []}, {"name": "Critérium du Dauphiné Libéré", "start": "2026-06-07", "end": "2026-06-14", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": "JORGENSON Matteo", "pts": 8.0}, {"stage": 3, "rider": "VAUQUELIN Kévin", "pts": 5.0}, {"stage": 3, "rider": "ONLEY Oscar", "pts": 3.0}, {"stage": 4, "rider": "SIMMONS Quinn", "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 7, "rider": null, "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}, {"stage": 8, "rider": null, "pts": 8.0}, {"stage": 8, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}], "finals": [{"pos": null, "rider": null, "pts": 50.0}, {"pos": null, "rider": null, "pts": 40.0}, {"pos": null, "rider": null, "pts": 35.0}, {"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": null, "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 10.0}, {"pos": null, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Tour de Suisse", "start": "2026-06-17", "end": "2026-06-21", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 7, "rider": null, "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}, {"stage": 8, "rider": null, "pts": 8.0}, {"stage": 8, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}], "finals": [{"pos": null, "rider": null, "pts": 50.0}, {"pos": null, "rider": null, "pts": 40.0}, {"pos": null, "rider": null, "pts": 35.0}, {"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": null, "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 10.0}, {"pos": null, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Copenhagen Sprint", "start": "2026-06-14", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Tour de France", "start": "2026-07-04", "end": "2026-07-26", "stages": [{"stage": 1, "rider": null, "pts": 15.0}, {"stage": 1, "rider": null, "pts": 10.0}, {"stage": 1, "rider": null, "pts": 7.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 15.0}, {"stage": 2, "rider": null, "pts": 10.0}, {"stage": 2, "rider": null, "pts": 7.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 15.0}, {"stage": 3, "rider": null, "pts": 10.0}, {"stage": 3, "rider": null, "pts": 7.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 15.0}, {"stage": 4, "rider": null, "pts": 10.0}, {"stage": 4, "rider": null, "pts": 7.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 15.0}, {"stage": 5, "rider": null, "pts": 10.0}, {"stage": 5, "rider": null, "pts": 7.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 15.0}, {"stage": 6, "rider": null, "pts": 10.0}, {"stage": 6, "rider": null, "pts": 7.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 7, "rider": null, "pts": 10.0}, {"stage": 7, "rider": null, "pts": 7.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}, {"stage": 8, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 8, "rider": null, "pts": 7.0}, {"stage": 8, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 15.0}, {"stage": 9, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 7.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 9, "rider": null, "pts": 3.0}, {"stage": 10, "rider": null, "pts": 15.0}, {"stage": 10, "rider": null, "pts": 10.0}, {"stage": 10, "rider": null, "pts": 7.0}, {"stage": 10, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 3.0}, {"stage": 11, "rider": null, "pts": 15.0}, {"stage": 11, "rider": null, "pts": 10.0}, {"stage": 11, "rider": null, "pts": 7.0}, {"stage": 11, "rider": null, "pts": 5.0}, {"stage": 11, "rider": null, "pts": 3.0}, {"stage": 12, "rider": null, "pts": 15.0}, {"stage": 12, "rider": null, "pts": 10.0}, {"stage": 12, "rider": null, "pts": 7.0}, {"stage": 12, "rider": null, "pts": 5.0}, {"stage": 12, "rider": null, "pts": 3.0}, {"stage": 13, "rider": null, "pts": 15.0}, {"stage": 13, "rider": null, "pts": 10.0}, {"stage": 13, "rider": null, "pts": 7.0}, {"stage": 13, "rider": null, "pts": 5.0}, {"stage": 13, "rider": null, "pts": 3.0}, {"stage": 14, "rider": null, "pts": 15.0}, {"stage": 14, "rider": null, "pts": 10.0}, {"stage": 14, "rider": null, "pts": 7.0}, {"stage": 14, "rider": null, "pts": 5.0}, {"stage": 14, "rider": null, "pts": 3.0}, {"stage": 15, "rider": null, "pts": 15.0}, {"stage": 15, "rider": null, "pts": 10.0}, {"stage": 15, "rider": null, "pts": 7.0}, {"stage": 15, "rider": null, "pts": 5.0}, {"stage": 15, "rider": null, "pts": 3.0}, {"stage": 16, "rider": null, "pts": 15.0}, {"stage": 16, "rider": null, "pts": 10.0}, {"stage": 16, "rider": null, "pts": 7.0}, {"stage": 16, "rider": null, "pts": 5.0}, {"stage": 16, "rider": null, "pts": 3.0}, {"stage": 17, "rider": null, "pts": 15.0}, {"stage": 17, "rider": null, "pts": 10.0}, {"stage": 17, "rider": null, "pts": 7.0}, {"stage": 17, "rider": null, "pts": 5.0}, {"stage": 17, "rider": null, "pts": 3.0}, {"stage": 18, "rider": null, "pts": 15.0}, {"stage": 18, "rider": null, "pts": 10.0}, {"stage": 18, "rider": null, "pts": 7.0}, {"stage": 18, "rider": null, "pts": 5.0}, {"stage": 18, "rider": null, "pts": 3.0}, {"stage": 19, "rider": null, "pts": 15.0}, {"stage": 19, "rider": null, "pts": 10.0}, {"stage": 19, "rider": null, "pts": 7.0}, {"stage": 19, "rider": null, "pts": 5.0}, {"stage": 19, "rider": null, "pts": 3.0}, {"stage": 20, "rider": null, "pts": 15.0}, {"stage": 20, "rider": null, "pts": 10.0}, {"stage": 20, "rider": null, "pts": 7.0}, {"stage": 20, "rider": null, "pts": 5.0}, {"stage": 20, "rider": null, "pts": 3.0}, {"stage": 21, "rider": null, "pts": 15.0}, {"stage": 21, "rider": null, "pts": 10.0}, {"stage": 21, "rider": null, "pts": 7.0}, {"stage": 21, "rider": null, "pts": 5.0}, {"stage": 21, "rider": null, "pts": 3.0}], "finals": [{"pos": 2, "rider": null, "pts": 95.0}, {"pos": 3, "rider": null, "pts": 80.0}, {"pos": 4, "rider": null, "pts": 70.0}, {"pos": 5, "rider": null, "pts": 60.0}, {"pos": 6, "rider": null, "pts": 55.0}, {"pos": 7, "rider": null, "pts": 50.0}, {"pos": 8, "rider": null, "pts": 45.0}, {"pos": 9, "rider": null, "pts": 40.0}, {"pos": 10, "rider": null, "pts": 35.0}, {"pos": 11, "rider": null, "pts": 30.0}, {"pos": 12, "rider": null, "pts": 25.0}, {"pos": 13, "rider": null, "pts": 20.0}, {"pos": 14, "rider": null, "pts": 15.0}, {"pos": 15, "rider": null, "pts": 10.0}, {"pos": 16, "rider": null, "pts": 8.0}, {"pos": 17, "rider": null, "pts": 6.0}, {"pos": 18, "rider": null, "pts": 4.0}, {"pos": 19, "rider": null, "pts": 3.0}, {"pos": 20, "rider": null, "pts": 2.0}, {"pos": 2, "rider": null, "pts": 50.0}, {"pos": 3, "rider": null, "pts": 40.0}, {"pos": 2, "rider": null, "pts": 30.0}, {"pos": 3, "rider": null, "pts": 25.0}, {"pos": 2, "rider": null, "pts": 30.0}, {"pos": 3, "rider": null, "pts": 25.0}], "specials": [{"label": "Sprint", "pos": null, "rider": null, "pts": 60.0}, {"label": "Berg", "pos": null, "rider": null, "pts": 40.0}, {"label": "Jongeren", "pos": null, "rider": null, "pts": 40.0}]}, {"name": "Clasica Ciclista San Sebastian-San Sebastian", "start": "2026-08-01", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Ronde van Polen", "start": "2026-08-03", "end": "2026-08-09", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 7, "rider": null, "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}], "finals": [{"pos": null, "rider": null, "pts": 50.0}, {"pos": null, "rider": null, "pts": 40.0}, {"pos": null, "rider": null, "pts": 35.0}, {"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": null, "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 10.0}, {"pos": null, "rider": null, "pts": 5.0}], "specials": []}, {"name": "ADAC Cyclassics", "start": "2026-08-16", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Renewi Tour", "start": "2026-08-19", "end": "2026-08-23", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}], "finals": [{"pos": null, "rider": null, "pts": 50.0}, {"pos": null, "rider": null, "pts": 40.0}, {"pos": null, "rider": null, "pts": 35.0}, {"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": null, "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 10.0}, {"pos": null, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Vuelta a España", "start": "2026-08-22", "end": "2026-09-13", "stages": [{"stage": 1, "rider": null, "pts": 12.0}, {"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 1, "rider": null, "pts": 1.0}, {"stage": 2, "rider": null, "pts": 12.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 1.0}, {"stage": 3, "rider": null, "pts": 12.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 1.0}, {"stage": 4, "rider": null, "pts": 12.0}, {"stage": 4, "rider": null, "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 1.0}, {"stage": 5, "rider": null, "pts": 12.0}, {"stage": 5, "rider": null, "pts": 12.0}, {"stage": 5, "rider": null, "pts": 12.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 1.0}, {"stage": 5, "rider": null, "pts": 1.0}, {"stage": 6, "rider": null, "pts": 12.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 1.0}, {"stage": 7, "rider": null, "pts": 12.0}, {"stage": 7, "rider": null, "pts": 8.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 7, "rider": null, "pts": 3.0}, {"stage": 7, "rider": null, "pts": 1.0}, {"stage": 8, "rider": null, "pts": 12.0}, {"stage": 8, "rider": null, "pts": 8.0}, {"stage": 8, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 8, "rider": null, "pts": 1.0}, {"stage": 9, "rider": null, "pts": 12.0}, {"stage": 9, "rider": null, "pts": 8.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 9, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 1.0}, {"stage": 10, "rider": null, "pts": 12.0}, {"stage": 10, "rider": null, "pts": 8.0}, {"stage": 10, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 3.0}, {"stage": 10, "rider": null, "pts": 1.0}, {"stage": 11, "rider": null, "pts": 12.0}, {"stage": 11, "rider": null, "pts": 8.0}, {"stage": 11, "rider": null, "pts": 5.0}, {"stage": 11, "rider": null, "pts": 3.0}, {"stage": 12, "rider": null, "pts": 12.0}, {"stage": 12, "rider": null, "pts": 8.0}, {"stage": 12, "rider": null, "pts": 5.0}, {"stage": 12, "rider": null, "pts": 3.0}, {"stage": 12, "rider": null, "pts": 1.0}, {"stage": 13, "rider": null, "pts": 12.0}, {"stage": 13, "rider": null, "pts": 8.0}, {"stage": 13, "rider": null, "pts": 5.0}, {"stage": 13, "rider": null, "pts": 3.0}, {"stage": 13, "rider": null, "pts": 1.0}, {"stage": 14, "rider": null, "pts": 12.0}, {"stage": 14, "rider": null, "pts": 8.0}, {"stage": 14, "rider": null, "pts": 5.0}, {"stage": 14, "rider": null, "pts": 3.0}, {"stage": 14, "rider": null, "pts": 1.0}, {"stage": 15, "rider": null, "pts": 12.0}, {"stage": 15, "rider": null, "pts": 8.0}, {"stage": 15, "rider": null, "pts": 5.0}, {"stage": 15, "rider": null, "pts": 3.0}, {"stage": 15, "rider": null, "pts": 1.0}, {"stage": 16, "rider": null, "pts": 12.0}, {"stage": 16, "rider": null, "pts": 8.0}, {"stage": 16, "rider": null, "pts": 5.0}, {"stage": 16, "rider": null, "pts": 3.0}, {"stage": 16, "rider": null, "pts": 1.0}, {"stage": 17, "rider": null, "pts": 12.0}, {"stage": 17, "rider": null, "pts": 8.0}, {"stage": 17, "rider": null, "pts": 5.0}, {"stage": 17, "rider": null, "pts": 3.0}, {"stage": 17, "rider": null, "pts": 1.0}, {"stage": 18, "rider": null, "pts": 12.0}, {"stage": 18, "rider": null, "pts": 8.0}, {"stage": 18, "rider": null, "pts": 5.0}, {"stage": 18, "rider": null, "pts": 3.0}, {"stage": 18, "rider": null, "pts": 1.0}, {"stage": 19, "rider": null, "pts": 12.0}, {"stage": 19, "rider": null, "pts": 8.0}, {"stage": 19, "rider": null, "pts": 5.0}, {"stage": 19, "rider": null, "pts": 3.0}, {"stage": 19, "rider": null, "pts": 1.0}, {"stage": 20, "rider": null, "pts": 12.0}, {"stage": 20, "rider": null, "pts": 8.0}, {"stage": 20, "rider": null, "pts": 5.0}, {"stage": 20, "rider": null, "pts": 3.0}, {"stage": 20, "rider": null, "pts": 1.0}, {"stage": 21, "rider": null, "pts": 12.0}, {"stage": 21, "rider": null, "pts": 8.0}, {"stage": 21, "rider": null, "pts": 5.0}, {"stage": 21, "rider": null, "pts": 3.0}, {"stage": 21, "rider": null, "pts": 1.0}], "finals": [{"pos": 2, "rider": null, "pts": 75.0}, {"pos": 3, "rider": null, "pts": 60.0}, {"pos": 4, "rider": null, "pts": 55.0}, {"pos": 5, "rider": null, "pts": 50.0}, {"pos": 6, "rider": null, "pts": 45.0}, {"pos": 7, "rider": null, "pts": 40.0}, {"pos": 8, "rider": null, "pts": 35.0}, {"pos": 9, "rider": null, "pts": 30.0}, {"pos": 10, "rider": null, "pts": 25.0}, {"pos": 11, "rider": null, "pts": 20.0}, {"pos": 12, "rider": null, "pts": 15.0}, {"pos": 13, "rider": null, "pts": 12.0}, {"pos": 14, "rider": null, "pts": 10.0}, {"pos": 15, "rider": null, "pts": 8.0}, {"pos": 16, "rider": null, "pts": 6.0}, {"pos": 17, "rider": null, "pts": 4.0}, {"pos": 18, "rider": null, "pts": 3.0}, {"pos": 19, "rider": null, "pts": 2.0}, {"pos": 20, "rider": null, "pts": 1.0}, {"pos": 2, "rider": null, "pts": 40.0}, {"pos": 3, "rider": null, "pts": 35.0}, {"pos": 2, "rider": null, "pts": 25.0}, {"pos": 3, "rider": null, "pts": 20.0}, {"pos": 2, "rider": null, "pts": 25.0}, {"pos": 3, "rider": null, "pts": 20.0}], "specials": [{"label": "Sprint", "pos": null, "rider": null, "pts": 50.0}, {"label": "Berg", "pos": null, "rider": null, "pts": 30.0}, {"label": "Jongeren", "pos": null, "rider": null, "pts": 30.0}]}, {"name": "Bretagne Classic", "start": "2026-08-30", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "GP de Quebec", "start": "2026-09-11", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "GP de Montreal", "start": "2026-09-13", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 50.0}, {"stage": 2, "rider": null, "pts": 40.0}, {"stage": 3, "rider": null, "pts": 35.0}, {"stage": 4, "rider": null, "pts": 30.0}, {"stage": 5, "rider": null, "pts": 25.0}, {"stage": 6, "rider": null, "pts": 20.0}, {"stage": 7, "rider": null, "pts": 15.0}, {"stage": 8, "rider": null, "pts": 10.0}, {"stage": 9, "rider": null, "pts": 5.0}, {"stage": 10, "rider": null, "pts": 2.0}], "finals": [], "specials": []}, {"name": "Ronde van Luxemburg", "start": "2026-09-16", "end": "2026-09-20", "stages": [{"stage": 1, "rider": null, "pts": 6.0}, {"stage": 1, "rider": null, "pts": 4.0}, {"stage": 1, "rider": null, "pts": 2.0}, {"stage": 2, "rider": null, "pts": 6.0}, {"stage": 2, "rider": null, "pts": 4.0}, {"stage": 2, "rider": null, "pts": 2.0}, {"stage": 3, "rider": null, "pts": 6.0}, {"stage": 3, "rider": null, "pts": 4.0}, {"stage": 3, "rider": null, "pts": 2.0}, {"stage": 4, "rider": null, "pts": 6.0}, {"stage": 4, "rider": null, "pts": 4.0}, {"stage": 4, "rider": null, "pts": 2.0}, {"stage": 5, "rider": null, "pts": 6.0}, {"stage": 5, "rider": null, "pts": 4.0}, {"stage": 5, "rider": null, "pts": 2.0}], "finals": [{"pos": null, "rider": null, "pts": 30.0}, {"pos": null, "rider": null, "pts": 25.0}, {"pos": null, "rider": null, "pts": 20.0}, {"pos": null, "rider": null, "pts": 15.0}, {"pos": null, "rider": null, "pts": 11.0}, {"pos": null, "rider": null, "pts": 7.0}, {"pos": null, "rider": null, "pts": 5.0}, {"pos": null, "rider": null, "pts": 3.0}, {"pos": null, "rider": null, "pts": 1.0}], "specials": []}, {"name": "WK Tijdrit", "start": "2026-09-20", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 60.0}, {"stage": 2, "rider": null, "pts": 50.0}, {"stage": 3, "rider": null, "pts": 40.0}, {"stage": 4, "rider": null, "pts": 35.0}, {"stage": 5, "rider": null, "pts": 30.0}, {"stage": 6, "rider": null, "pts": 25.0}, {"stage": 7, "rider": null, "pts": 20.0}, {"stage": 8, "rider": null, "pts": 15.0}, {"stage": 9, "rider": null, "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "WK Wegrit", "start": "2026-09-27", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 60.0}, {"stage": 2, "rider": null, "pts": 50.0}, {"stage": 3, "rider": null, "pts": 40.0}, {"stage": 4, "rider": null, "pts": 35.0}, {"stage": 5, "rider": null, "pts": 30.0}, {"stage": 6, "rider": null, "pts": 25.0}, {"stage": 7, "rider": null, "pts": 20.0}, {"stage": 8, "rider": null, "pts": 15.0}, {"stage": 9, "rider": null, "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "Giro Emillia", "start": "2026-10-03", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 30.0}, {"stage": 2, "rider": null, "pts": 25.0}, {"stage": 3, "rider": null, "pts": 20.0}, {"stage": 4, "rider": null, "pts": 15.0}, {"stage": 5, "rider": null, "pts": 11.0}, {"stage": 6, "rider": null, "pts": 7.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 2.0}, {"stage": 10, "rider": null, "pts": 1.0}], "finals": [], "specials": []}, {"name": "Tre Valli Varesine", "start": "2026-10-10", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 30.0}, {"stage": 2, "rider": null, "pts": 25.0}, {"stage": 3, "rider": null, "pts": 20.0}, {"stage": 4, "rider": null, "pts": 15.0}, {"stage": 5, "rider": null, "pts": 11.0}, {"stage": 6, "rider": null, "pts": 7.0}, {"stage": 7, "rider": null, "pts": 5.0}, {"stage": 8, "rider": null, "pts": 3.0}, {"stage": 9, "rider": null, "pts": 2.0}, {"stage": 10, "rider": null, "pts": 1.0}], "finals": [], "specials": []}, {"name": "Ronde van Lombardije", "start": "2026-10-10", "end": null, "stages": [{"stage": 1, "rider": null, "pts": 60.0}, {"stage": 2, "rider": null, "pts": 50.0}, {"stage": 3, "rider": null, "pts": 40.0}, {"stage": 4, "rider": null, "pts": 35.0}, {"stage": 5, "rider": null, "pts": 30.0}, {"stage": 6, "rider": null, "pts": 25.0}, {"stage": 7, "rider": null, "pts": 20.0}, {"stage": 8, "rider": null, "pts": 15.0}, {"stage": 9, "rider": null, "pts": 10.0}, {"stage": 10, "rider": null, "pts": 5.0}], "finals": [], "specials": []}, {"name": "Tour of Guangxi", "start": "2026-10-13", "end": "2026-10-18", "stages": [{"stage": 1, "rider": null, "pts": 8.0}, {"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 8.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 8.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 8.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 8.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 8.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}], "finals": [{"pos": 2, "rider": null, "pts": 50.0}, {"pos": 3, "rider": null, "pts": 40.0}, {"pos": 4, "rider": null, "pts": 35.0}, {"pos": 5, "rider": null, "pts": 30.0}, {"pos": 6, "rider": null, "pts": 25.0}, {"pos": 7, "rider": null, "pts": 20.0}, {"pos": 8, "rider": null, "pts": 15.0}, {"pos": 9, "rider": null, "pts": 10.0}, {"pos": 10, "rider": null, "pts": 5.0}], "specials": []}, {"name": "Tour of Holland", "start": "?", "end": "?", "stages": [{"stage": 1, "rider": null, "pts": 5.0}, {"stage": 1, "rider": null, "pts": 3.0}, {"stage": 1, "rider": null, "pts": 1.0}, {"stage": 2, "rider": null, "pts": 5.0}, {"stage": 2, "rider": null, "pts": 3.0}, {"stage": 2, "rider": null, "pts": 1.0}, {"stage": 3, "rider": null, "pts": 5.0}, {"stage": 3, "rider": null, "pts": 3.0}, {"stage": 3, "rider": null, "pts": 1.0}, {"stage": 4, "rider": null, "pts": 5.0}, {"stage": 4, "rider": null, "pts": 3.0}, {"stage": 4, "rider": null, "pts": 1.0}, {"stage": 5, "rider": null, "pts": 5.0}, {"stage": 5, "rider": null, "pts": 3.0}, {"stage": 5, "rider": null, "pts": 1.0}, {"stage": 6, "rider": null, "pts": 5.0}, {"stage": 6, "rider": null, "pts": 3.0}, {"stage": 6, "rider": null, "pts": 1.0}], "finals": [{"pos": 2, "rider": null, "pts": 25.0}, {"pos": 3, "rider": null, "pts": 20.0}, {"pos": 4, "rider": null, "pts": 15.0}, {"pos": 5, "rider": null, "pts": 11.0}, {"pos": 6, "rider": null, "pts": 7.0}, {"pos": 7, "rider": null, "pts": 5.0}, {"pos": 8, "rider": null, "pts": 3.0}, {"pos": 9, "rider": null, "pts": 2.0}, {"pos": 10, "rider": null, "pts": 1.0}], "specials": []}];
 
 // ============================================================
 // STATE
 // ============================================================
-let state = {
-  tab: "stand",
-  teamView: null,      // null = overview, string = manager name
-  highlightRider: null,
-  raceOpen: {},        // race name -> bool
-  adminModal: null,    // null | "addRace" | "editRace"
-  editingRace: null,
-  comments: JSON.parse(localStorage.getItem("wv_comments")||"[]"),
-  jerseyImages: JSON.parse(localStorage.getItem("wv_jerseys")||"{}"),
-  riders: JSON.parse(localStorage.getItem("wv_riders")) || RIDERS_DATA,
-  races: JSON.parse(localStorage.getItem("wv_races")) || RACES_DATA,
-};
+function loadState() {
+  try {
+    const saved = localStorage.getItem('wv26_state');
+    if (saved) {
+      const s = JSON.parse(saved);
+      // Merge: always use fresh RACES_DATA structure but overlay saved rider names
+      const races = JSON.parse(JSON.stringify(RACES_DATA));
+      if (s.raceResults) {
+        races.forEach(race => {
+          const saved_race = s.raceResults[race.name];
+          if (!saved_race) return;
+          race.stages.forEach((slot, i) => {
+            if (saved_race.stages && saved_race.stages[i] !== undefined) slot.rider = saved_race.stages[i];
+          });
+          race.finals.forEach((slot, i) => {
+            if (saved_race.finals && saved_race.finals[i] !== undefined) slot.rider = saved_race.finals[i];
+          });
+          if (saved_race.dnfs) race.dnfs = saved_race.dnfs;
+          if (saved_race.specials) {
+            race.specials.forEach((sl, i) => {
+              if (saved_race.specials[i] !== undefined) sl.rider = saved_race.specials[i];
+            });
+          }
+        });
+      }
+      return {
+        races,
+        riderTeams: s.riderTeams || {},
+        teamColors: s.teamColors || {},
+        teamAbbr: s.teamAbbr || {},
+        jerseyImages: s.jerseyImages || {},
+        comments: s.comments || [],
+      };
+    }
+  } catch(e) {}
+  return {
+    races: JSON.parse(JSON.stringify(RACES_DATA)),
+    riderTeams: {}, teamColors: {}, teamAbbr: {}, jerseyImages: {}, comments: []
+  };
+}
+
+let S = loadState();
 
 function saveState() {
-  localStorage.setItem("wv_comments", JSON.stringify(state.comments));
-  localStorage.setItem("wv_jerseys", JSON.stringify(state.jerseyImages));
-  localStorage.setItem("wv_riders", JSON.stringify(state.riders));
-  localStorage.setItem("wv_races", JSON.stringify(state.races));
+  // Only save rider names (not full structure) to keep storage small
+  const raceResults = {};
+  S.races.forEach(race => {
+    raceResults[race.name] = {
+      stages: race.stages.map(s => s.rider || null),
+      finals: race.finals.map(f => f.rider || null),
+      specials: race.specials.map(sp => sp.rider || null),
+      dnfs: race.dnfs || [],
+    };
+  });
+  localStorage.setItem('wv26_state', JSON.stringify({
+    raceResults,
+    riderTeams: S.riderTeams,
+    teamColors: S.teamColors,
+    teamAbbr: S.teamAbbr,
+    jerseyImages: S.jerseyImages,
+    comments: S.comments,
+  }));
 }
 
 // ============================================================
-// HELPERS
+// COMPUTED
 // ============================================================
-function getRiderManager(name) {
-  const r = state.riders.find(rd => rd.name === name);
-  if (r) return r.manager;
-  const k = state.riders.find(rd => {
-    const a = rd.name.toLowerCase().split(" ");
-    const b = name.toLowerCase().split(" ");
-    return a[0] === b[0] && a[a.length-1] === b[b.length-1];
+function getRiderPoints() {
+  const pts = {}, dnfs = {}, dnfRaces = {};
+  RIDERS_INITIAL.forEach(r => { pts[r.name] = 0; dnfs[r.name] = 0; dnfRaces[r.name] = []; });
+
+  S.races.forEach(race => {
+    [...(race.stages||[]), ...(race.finals||[]), ...(race.specials||[])].forEach(e => {
+      if (!e.rider || !e.pts) return;
+      const key = fuzzyFind(e.rider);
+      if (key) pts[key] = (pts[key]||0) + e.pts;
+    });
+    (race.dnfs||[]).forEach(name => {
+      const key = fuzzyFind(name);
+      if (key) { dnfs[key] = (dnfs[key]||0)+1; dnfRaces[key] = dnfRaces[key]||[]; dnfRaces[key].push(race.name); }
+    });
   });
-  return k ? k.manager : null;
+  return { pts, dnfs, dnfRaces };
+}
+
+function fuzzyFind(name) {
+  if (!name) return null;
+  const clean = name.trim();
+  // exact
+  if (RIDERS_INITIAL.find(r => r.name === clean)) return clean;
+  // first+last match (case insensitive)
+  const parts = clean.toLowerCase().split(' ').filter(Boolean);
+  const match = RIDERS_INITIAL.find(r => {
+    const rp = r.name.toLowerCase().split(' ').filter(Boolean);
+    return rp[0] === parts[0] && rp[rp.length-1] === parts[parts.length-1];
+  });
+  return match ? match.name : null;
+}
+
+function getRiderManager(name) {
+  const key = fuzzyFind(name);
+  if (key) return RIDERS_INITIAL.find(r => r.name === key)?.manager || null;
+  return null;
+}
+
+function getTeamForRider(riderName) {
+  if (S.riderTeams[riderName]) return S.riderTeams[riderName];
+  const key = fuzzyFind(riderName) || riderName;
+  return RIDER_TEAM_DEFAULT[key] || 'default';
+}
+
+function getTeamColor(team) {
+  if (S.teamColors[team]) return S.teamColors[team];
+  return DEFAULT_TEAM_COLORS[team] || DEFAULT_TEAM_COLORS.default;
+}
+
+function getTeamAbbr(team) {
+  if (S.teamAbbr[team]) return S.teamAbbr[team];
+  return team.substring(0,2).toUpperCase();
 }
 
 function calcStandings() {
+  const { pts, dnfs } = getRiderPoints();
   return MANAGERS.map(m => {
-    const mine = state.riders.filter(r => r.manager === m);
-    const pts = mine.reduce((s,r) => s+r.points, 0);
+    const mine = RIDERS_INITIAL.filter(r => r.manager === m);
+    const total = mine.reduce((s,r) => s+(pts[r.name]||0), 0);
+    const totalDnf = mine.reduce((s,r) => s+(dnfs[r.name]||0), 0);
     const cost = mine.reduce((s,r) => s+r.cost, 0);
-    const dnfs = mine.reduce((s,r) => s+r.dnf, 0);
-    return {name:m, pts, cost, dnfs, riders:mine};
-  }).sort((a,b) => b.pts-a.pts);
+    return { name:m, pts:total, dnfs:totalDnf, cost, riders:mine };
+  }).sort((a,b) => b.pts - a.pts);
 }
 
-function fmt(n) { return n != null ? n.toLocaleString("nl-NL") : "—"; }
+function raceStatus(race) {
+  const all = [...(race.stages||[]), ...(race.finals||[])];
+  if (!all.length) return 'empty';
+  const filled = all.filter(e => e.rider).length;
+  if (filled === 0) return 'empty';
+  if (filled === all.length) return 'done';
+  return 'partial';
+}
+
+// ============================================================
+// UI STATE
+// ============================================================
+let UI = { tab:'stand', teamView:null, highlightRider:null, raceOpen:{}, modal:null, modalData:null };
+
+function navigate(tab, extra={}) {
+  UI.tab = tab;
+  UI.teamView = extra.teamView || null;
+  UI.highlightRider = extra.highlightRider || null;
+  if (!extra.keepOpen) UI.raceOpen = {};
+  render();
+}
 
 // ============================================================
 // RENDER
 // ============================================================
+function el(tag, cls) { const e = document.createElement(tag); if(cls) e.className=cls; return e; }
+
 function render() {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
+  const app = document.getElementById('app');
+  app.innerHTML = '';
 
   // Header
-  const hdr = el("div","header");
-  hdr.innerHTML = `<h1>🚴 Wielerveiling 2026</h1><div class="sub">Fantasy wielrennen &bull; 8 managers</div>`;
+  const hdr = el('div','header');
+  hdr.innerHTML = '<h1>🚴 Wielerveiling 2026</h1><div class="sub">Fantasy wielrennen &bull; 8 managers</div>';
   app.appendChild(hdr);
 
   // Tabs
-  const tabBar = el("div","tabs");
-  [["stand","🏆 Stand"],["teams","👥 Teams"],["races","🗺 Races"],["feed","💬 Feed"],["admin","⚙️ Admin"]].forEach(([id,label]) => {
-    const t = el("button","tab"+(state.tab===id?" active":""));
+  const tabBar = el('div','tabs');
+  [['stand','🏆 Stand'],['teams','👥 Teams'],['races','🗺 Races'],['feed','💬 Feed'],['admin','⚙️ Admin']].forEach(([id,label]) => {
+    const t = el('button','tab'+(UI.tab===id?' active':''));
     t.textContent = label;
-    t.onclick = () => { state.tab=id; state.teamView=null; state.highlightRider=null; render(); };
+    t.onclick = () => navigate(id);
     tabBar.appendChild(t);
   });
   app.appendChild(tabBar);
 
-  const body = el("div","");
-  if (state.tab==="stand") renderStand(body);
-  else if (state.tab==="teams") renderTeams(body);
-  else if (state.tab==="races") renderRaces(body);
-  else if (state.tab==="feed") renderFeed(body);
-  else if (state.tab==="admin") renderAdmin(body);
+  const body = el('div','');
+  if (UI.tab==='stand') renderStand(body);
+  else if (UI.tab==='teams') renderTeams(body);
+  else if (UI.tab==='races') renderRaces(body);
+  else if (UI.tab==='feed') renderFeed(body);
+  else if (UI.tab==='admin') renderAdmin(body);
   app.appendChild(body);
 
-  if (state.adminModal) renderModal(app);
+  if (UI.modal) renderModal(app);
 }
 
 // ---- STAND ----
@@ -661,22 +407,22 @@ function renderStand(c) {
   const standings = calcStandings();
   const max = standings[0]?.pts || 1;
   standings.forEach((m, idx) => {
-    const card = el("div","card clickable");
-    card.onclick = () => { state.tab="teams"; state.teamView=m.name; render(); };
+    const card = el('div','card');
+    card.style.cursor = 'pointer';
+    card.onclick = () => navigate('teams', {teamView: m.name});
     card.innerHTML = `
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
         <span style="font-size:13px;color:var(--t2);min-width:22px;font-weight:500">#${idx+1}</span>
-        <div style="width:34px;height:34px;border-radius:50%;background:${COLORS[m.name]}22;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:${COLORS[m.name]}">${m.name[0]}</div>
-        <span style="font-weight:500;font-size:16px;flex:1;color:${COLORS[m.name]}">${m.name}</span>
+        <div style="width:32px;height:32px;border-radius:50%;background:${COLORS[m.name]}22;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:${COLORS[m.name]}">${m.name[0]}</div>
+        <span style="font-weight:500;font-size:16px;flex:1">${m.name}</span>
         <span style="font-size:22px;font-weight:500;color:${COLORS[m.name]}">${m.pts}</span>
         <span style="font-size:13px;color:var(--t2)">pts</span>
       </div>
-      <div class="bar-wrap"><div class="bar" style="width:${(m.pts/max)*100}%;background:${COLORS[m.name]}"></div></div>
+      <div class="bar-wrap"><div class="bar" style="width:${max?((m.pts/max)*100):0}%;background:${COLORS[m.name]}"></div></div>
       <div class="meta">
         <span>Budget: <b>${m.cost.toFixed(1)}M</b></span>
-        <span>DNFs: <b style="color:${m.dnfs>0?"#D85A30":"var(--t1)"}">${m.dnfs}</b></span>
-        <span>€/pt: <b>${m.pts>0?fmt(Math.round(m.cost/m.pts*100000)):"—"}</b></span>
-        <span style="margin-left:auto;color:var(--t3)">${m.riders.length} renners &rsaquo;</span>
+        <span>DNFs: <b style="color:${m.dnfs>0?'#D85A30':'var(--t1)'}">${m.dnfs}</b></span>
+        <span style="margin-left:auto;color:var(--t3);font-size:12px">${m.riders.length} renners ›</span>
       </div>`;
     c.appendChild(card);
   });
@@ -684,108 +430,102 @@ function renderStand(c) {
 
 // ---- TEAMS ----
 function renderTeams(c) {
-  if (!state.teamView) {
-    // overview - just standings with click
+  if (!UI.teamView) {
     const standings = calcStandings();
     const max = standings[0]?.pts || 1;
     standings.forEach((m, idx) => {
-      const card = el("div","card clickable");
-      card.onclick = () => { state.teamView=m.name; render(); };
+      const card = el('div','card');
+      card.style.cursor = 'pointer';
+      card.onclick = () => { UI.teamView = m.name; render(); };
       card.innerHTML = `
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
           <span style="font-size:13px;color:var(--t2);min-width:22px;font-weight:500">#${idx+1}</span>
-          <div style="width:34px;height:34px;border-radius:50%;background:${COLORS[m.name]}22;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:${COLORS[m.name]}">${m.name[0]}</div>
-          <span style="font-weight:500;font-size:16px;flex:1">${m.name}</span>
+          <div style="width:32px;height:32px;border-radius:50%;background:${COLORS[m.name]}22;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:${COLORS[m.name]}">${m.name[0]}</div>
+          <span style="font-weight:500;font-size:15px;flex:1">${m.name}</span>
           <span style="font-size:20px;font-weight:500;color:${COLORS[m.name]}">${m.pts}</span>
-          <span style="font-size:13px;color:var(--t2)">pts &rsaquo;</span>
+          <span style="font-size:13px;color:var(--t2)">pts ›</span>
         </div>
-        <div class="bar-wrap"><div class="bar" style="width:${(m.pts/max)*100}%;background:${COLORS[m.name]}"></div></div>`;
+        <div class="bar-wrap"><div class="bar" style="width:${max?((m.pts/max)*100):0}%;background:${COLORS[m.name]}"></div></div>`;
       c.appendChild(card);
     });
     return;
   }
 
-  // Manager roster view
-  const mgr = state.teamView;
-  const back = el("button","back-btn");
-  back.innerHTML = "&#8592; Alle teams";
-  back.onclick = () => { state.teamView=null; state.highlightRider=null; render(); };
+  const mgr = UI.teamView;
+  const { pts, dnfs, dnfRaces } = getRiderPoints();
+
+  const back = el('button','back-btn');
+  back.innerHTML = '← Alle teams';
+  back.onclick = () => { UI.teamView=null; UI.highlightRider=null; render(); };
   c.appendChild(back);
 
-  // Nav between managers
-  const nav = el("div","nav-row");
+  const nav = el('div','nav-row');
   MANAGERS.forEach(m => {
-    const b = el("button","pill"+(m===mgr?" active":""));
+    const b = el('button','pill'+(m===mgr?' active':''));
     if (m===mgr) b.style.background = COLORS[m];
     b.textContent = m;
-    b.onclick = () => { state.teamView=m; state.highlightRider=null; render(); };
+    b.onclick = () => { UI.teamView=m; UI.highlightRider=null; render(); };
     nav.appendChild(b);
   });
   c.appendChild(nav);
 
-  const mine = state.riders.filter(r => r.manager===mgr).sort((a,b)=>b.points-a.points);
-  const totalPts = mine.reduce((s,r)=>s+r.points,0);
-  const totalCost = mine.reduce((s,r)=>s+r.cost,0);
-  const totalDnf = mine.reduce((s,r)=>s+r.dnf,0);
+  const mine = RIDERS_INITIAL.filter(r => r.manager===mgr).sort((a,b) => (pts[b.name]||0)-(pts[a.name]||0));
+  const totalPts = mine.reduce((s,r) => s+(pts[r.name]||0), 0);
+  const totalCost = mine.reduce((s,r) => s+r.cost, 0);
+  const totalDnf = mine.reduce((s,r) => s+(dnfs[r.name]||0), 0);
 
-  // Stats
-  const sg = el("div","stat-grid");
+  const sg = el('div','stat-grid');
   sg.innerHTML = `
     <div class="stat"><div class="label">Punten</div><div class="value" style="color:${COLORS[mgr]}">${totalPts}</div></div>
     <div class="stat"><div class="label">Budget</div><div class="value">${totalCost.toFixed(1)}M</div></div>
-    <div class="stat"><div class="label">DNFs</div><div class="value" style="color:${totalDnf>0?"#D85A30":"var(--t1)"}">${totalDnf}</div></div>`;
+    <div class="stat"><div class="label">DNFs</div><div class="value" style="color:${totalDnf>0?'#D85A30':'var(--t1)'}">${totalDnf}</div></div>`;
   c.appendChild(sg);
 
-  // Table
-  const wrap = el("div","");
-  wrap.style.cssText = "border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden";
-  const tbl = el("table","tbl");
+  const wrap = el('div','tbl-wrap');
+  const tbl = el('table','tbl');
   tbl.innerHTML = `<thead><tr>
-    <th style="width:36px"></th>
+    <th style="width:34px"></th>
     <th>Renner</th>
-    <th>Team</th>
     <th class="r">Prijs</th>
     <th class="r">Punten</th>
-    <th class="r">€/pt</th>
     <th class="c">DNF</th>
   </tr></thead>`;
-  const tbody = el("tbody","");
+  const tbody = el('tbody','');
+
   mine.forEach(r => {
-    const tr = el("tr", r.name===state.highlightRider?"highlight":"");
-    const team = getTeam(r.name);
-    const tc = TEAM_COLORS[team] || TEAM_COLORS.default;
-    const jerseyId = "jersey_"+team;
-    const imgSrc = state.jerseyImages[team];
+    const rpts = pts[r.name]||0;
+    const rdnf = dnfs[r.name]||0;
+    const rdnfRaces = dnfRaces[r.name]||[];
+    const team = getTeamForRider(r.name);
+    const color = getTeamColor(team);
+    const abbr = getTeamAbbr(team);
+    const imgSrc = S.jerseyImages[team];
 
-    const dnfRaces = r.dnfRaces || [];
-    const dnfHtml = r.dnf > 0
-      ? `<span class="dnf-badge" title="${dnfRaces.join(", ")}">${r.dnf}</span>`
-      : `<span style="color:var(--t3)">—</span>`;
-
+    const tr = el('tr', r.name===UI.highlightRider ? 'highlight' : '');
     tr.innerHTML = `
-      <td style="padding:8px 10px">
-        <div class="jersey" style="background:${tc[0]}" id="${jerseyId}" title="${team} (klik om afbeelding te uploaden)">
-          ${imgSrc ? `<img src="${imgSrc}" alt="${team}">` : `<span style="color:${tc[1]}">${team.substring(0,2).toUpperCase()}</span>`}
-          <input type="file" accept="image/*" data-team="${team}" title="Upload jersey voor ${team}">
+      <td style="padding:7px 10px">
+        <div class="jersey" style="background:${color}" title="${team} — klik om afbeelding te wijzigen">
+          ${imgSrc ? `<img src="${imgSrc}" alt="${team}">` : `<span>${abbr}</span>`}
+          <input type="file" accept="image/*" data-team="${team}">
         </div>
       </td>
-      <td style="font-weight:${r.points>100?500:400}">
-        ${r.joker ? `<span class="badge" style="background:#FAC77533;color:#BA7517;margin-right:4px">joker</span>` : ""}
-        ${r.name}
-        <div style="font-size:11px;color:var(--t2)">${mgr}</div>
+      <td>
+        <div style="font-weight:${rpts>100?500:400};font-size:13px">${r.name}</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:1px;display:flex;align-items:center;gap:5px">
+          <span class="jersey-abbr" style="cursor:pointer;text-decoration:underline dotted" data-edit-team="${team}">${team}</span>
+        </div>
       </td>
-      <td><span class="team-badge" style="background:${tc[0]}22;color:${tc[0]}">${team}</span></td>
-      <td class="r" style="color:var(--t2)">${r.cost.toFixed(1)}M</td>
-      <td class="r" style="font-weight:500;color:${r.points>0?COLORS[mgr]:"var(--t2)"}">${r.points}</td>
-      <td class="r" style="font-size:12px;color:var(--t2)">${r.costPerPoint ? fmt(r.costPerPoint) : "—"}</td>
-      <td class="c">${dnfHtml}</td>`;
+      <td class="r" style="color:var(--t2);font-size:13px">${r.cost.toFixed(1)}M</td>
+      <td class="r" style="font-weight:500;color:${rpts>0?COLORS[mgr]:'var(--t2)'}">${rpts}</td>
+      <td class="c">${rdnf>0 ? `<span class="dnf-badge tooltip">${rdnf}<span class="tip">${rdnfRaces.join(', ')}</span></span>` : '<span style="color:var(--t3)">—</span>'}</td>`;
     tbody.appendChild(tr);
   });
+
   tbl.appendChild(tbody);
   wrap.appendChild(tbl);
   c.appendChild(wrap);
 
-  // Jersey upload listeners (after DOM)
+  // Wire jersey upload & team edit after DOM
   setTimeout(() => {
     document.querySelectorAll('.jersey input[type=file]').forEach(inp => {
       inp.addEventListener('change', e => {
@@ -793,354 +533,372 @@ function renderTeams(c) {
         const file = e.target.files[0];
         if (!file) return;
         const reader = new FileReader();
-        reader.onload = ev => {
-          state.jerseyImages[team] = ev.target.result;
-          saveState();
-          render();
-        };
+        reader.onload = ev => { S.jerseyImages[team] = ev.target.result; saveState(); render(); };
         reader.readAsDataURL(file);
       });
+    });
+    document.querySelectorAll('[data-edit-team]').forEach(el => {
+      el.onclick = () => {
+        const team = el.dataset.editTeam;
+        UI.modal = 'editTeam';
+        UI.modalData = { team };
+        render();
+      };
     });
   }, 0);
 }
 
 // ---- RACES ----
 function renderRaces(c) {
-  state.races.forEach(race => {
-    const wrap = el("div","race-item");
-    const hdr = el("div","race-header");
-    const isOpen = state.raceOpen[race.name];
-    const allEntries = [...(race.finals||[]), ...(race.stages||[])];
-    const riderCount = [...new Set(allEntries.map(e=>e.rider).filter(Boolean))].length;
+  S.races.forEach(race => {
+    const wrap = el('div','race-item');
+    const status = raceStatus(race);
+    const isOpen = UI.raceOpen[race.name];
+    const allEntries = [...(race.stages||[]), ...(race.finals||[])];
+    const filled = allEntries.filter(e=>e.rider).length;
+    const total = allEntries.length;
+    const dnfCount = (race.dnfs||[]).length;
+
+    const hdr = el('div','race-hdr');
     hdr.innerHTML = `
-      <div>
-        <div style="font-weight:500;font-size:14px">${race.name}</div>
-        <div style="font-size:11px;color:var(--t2);margin-top:2px">${race.type||""} &bull; ${riderCount} renners gescoord</div>
-        ${race.dnfs&&race.dnfs.length ? `<div class="dnf-list">DNF: ${race.dnfs.slice(0,4).join(", ")}${race.dnfs.length>4?"…":""}</div>` : ""}
+      <div class="race-hdr-left">
+        <div class="race-title">${race.name}</div>
+        <div class="race-meta">${race.start||'?'}${race.end?' → '+race.end:''} &bull; ${filled}/${total} ingevuld${dnfCount?' &bull; '+dnfCount+' DNF':''}</div>
       </div>
-      <span class="chevron${isOpen?" open":""}">▼</span>`;
-    hdr.onclick = () => { state.raceOpen[race.name] = !isOpen; render(); };
+      <span class="race-status ${status==='done'?'status-done':status==='partial'?'status-partial':'status-empty'}">${status==='done'?'✓ Klaar':status==='partial'?'Bezig':'Leeg'}</span>
+      <span class="chevron${isOpen?' open':''}">▼</span>`;
+    hdr.onclick = () => { UI.raceOpen[race.name]=!isOpen; render(); };
     wrap.appendChild(hdr);
 
     if (isOpen) {
-      const body = el("div","race-body");
+      // Group stages by stage number
+      const stageGroups = {};
+      (race.stages||[]).forEach(s => {
+        const key = s.stage !== null ? s.stage : '_';
+        if (!stageGroups[key]) stageGroups[key] = [];
+        stageGroups[key].push(s);
+      });
 
-      if (race.finals && race.finals.length) {
-        const sec = el("div","");
-        sec.style.padding = "10px 16px 0";
-        sec.innerHTML = `<div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:6px">EINDKLASSEMENT</div>`;
-        const tbl = el("table","tbl");
-        tbl.style.marginBottom = "0";
-        const tb = el("tbody","");
-        race.finals.forEach((f, i) => {
-          const m = getRiderManager(f.rider);
-          const tr = el("tr","");
-          tr.innerHTML = `
-            <td style="width:32px;font-size:12px;color:var(--t2)">${f.pos||i+1}</td>
-            <td class="clickable" style="font-weight:${f.pts>=40?500:400}">${f.rider}</td>
-            <td>${m ? `<span class="badge" style="background:${COLORS[m]}22;color:${COLORS[m]}">${m}</span>` : ""}</td>
-            <td class="r" style="font-weight:500">${f.pts}</td>`;
-          if (m) {
-            tr.querySelector("td.clickable").onclick = () => {
-              state.tab="teams"; state.teamView=m; state.highlightRider=f.rider; render();
-            };
-          }
-          tb.appendChild(tr);
-        });
-        tbl.appendChild(tb);
-        sec.appendChild(tbl);
-        body.appendChild(sec);
+      if (Object.keys(stageGroups).length > 0) {
+        const hasMultipleStages = Object.keys(stageGroups).length > 1 || Object.keys(stageGroups)[0] !== '_';
+        if (hasMultipleStages) {
+          Object.entries(stageGroups).forEach(([stageNum, slots]) => {
+            const lbl = el('div','section-label');
+            lbl.textContent = stageNum === '_' ? 'UITSLAG' : `ETAPPE ${stageNum}`;
+            wrap.appendChild(lbl);
+            renderSlots(wrap, slots, race);
+          });
+        } else {
+          const lbl = el('div','section-label');
+          lbl.textContent = 'UITSLAG';
+          wrap.appendChild(lbl);
+          renderSlots(wrap, race.stages, race);
+        }
       }
 
-      if (race.stages && race.stages.length) {
-        const sec = el("div","");
-        sec.style.cssText = "padding:10px 16px 0;margin-top:8px";
-        sec.innerHTML = `<div style="font-size:12px;font-weight:500;color:var(--t2);margin-bottom:6px">ETAPPES</div>`;
-        const tbl = el("table","tbl");
-        const tb = el("tbody","");
-        race.stages.forEach(s => {
-          const m = getRiderManager(s.rider);
-          const tr = el("tr","");
-          tr.innerHTML = `
-            <td style="width:56px;font-size:12px;color:var(--t2)">Et. ${s.stage}</td>
-            <td class="clickable">${s.rider}</td>
-            <td>${m ? `<span class="badge" style="background:${COLORS[m]}22;color:${COLORS[m]}">${m}</span>` : ""}</td>
-            <td class="r" style="font-weight:500">${s.pts}</td>`;
-          if (m) {
-            tr.querySelector("td.clickable").onclick = () => {
-              state.tab="teams"; state.teamView=m; state.highlightRider=s.rider; render();
-            };
-          }
-          tb.appendChild(tr);
-        });
-        tbl.appendChild(tb);
-        sec.appendChild(tbl);
-        body.appendChild(sec);
+      if ((race.finals||[]).length > 0) {
+        const lbl = el('div','section-label');
+        lbl.textContent = 'EINDKLASSEMENT';
+        wrap.appendChild(lbl);
+        renderSlots(wrap, race.finals, race);
       }
 
-      const spacer = el("div",""); spacer.style.height="12px";
-      body.appendChild(spacer);
-      wrap.appendChild(body);
+      if ((race.specials||[]).length > 0) {
+        const lbl = el('div','section-label');
+        lbl.textContent = 'SPECIALE KLASSEMENTEN';
+        wrap.appendChild(lbl);
+        renderSlots(wrap, race.specials, race);
+      }
+
+      // DNF section
+      const dnfLbl = el('div','section-label');
+      dnfLbl.innerHTML = `DNFs <button class="btn" style="font-size:11px;padding:2px 8px;margin-left:8px" id="add-dnf-${race.name.replace(/\s/g,'_')}">+ Voeg toe</button>`;
+      wrap.appendChild(dnfLbl);
+
+      if ((race.dnfs||[]).length > 0) {
+        race.dnfs.forEach((name, i) => {
+          const row = el('div','slot-row');
+          const mgr = getRiderManager(name);
+          row.innerHTML = `
+            <span class="slot-pos" style="color:#D85A30">DNF</span>
+            <span class="slot-rider">${name}${mgr?` <span class="badge" style="background:${COLORS[mgr]}22;color:${COLORS[mgr]}">${mgr}</span>`:''}</span>
+            <button class="btn danger" style="font-size:11px;padding:2px 8px" data-dnf-remove="${i}" data-race="${race.name}">✕</button>`;
+          wrap.appendChild(row);
+        });
+      } else {
+        const row = el('div','slot-row');
+        row.innerHTML = '<span style="color:var(--t3);font-size:12px">Geen DNFs</span>';
+        wrap.appendChild(row);
+      }
+
+      const spacer = el('div',''); spacer.style.height='8px';
+      wrap.appendChild(spacer);
     }
+
     c.appendChild(wrap);
   });
+
+  // Wire DNF buttons after render
+  setTimeout(() => {
+    document.querySelectorAll('[data-dnf-remove]').forEach(btn => {
+      btn.onclick = e => {
+        e.stopPropagation();
+        const raceName = btn.dataset.race;
+        const idx = parseInt(btn.dataset.dnfRemove);
+        const race = S.races.find(r => r.name === raceName);
+        if (race) { race.dnfs.splice(idx,1); saveState(); render(); }
+      };
+    });
+    document.querySelectorAll('[id^="add-dnf-"]').forEach(btn => {
+      btn.onclick = e => {
+        e.stopPropagation();
+        const raceName = btn.id.replace('add-dnf-','').replace(/_/g,' ');
+        const name = prompt('Naam van de renner (DNF):');
+        if (!name) return;
+        const race = S.races.find(r => r.name === raceName);
+        if (race) { race.dnfs = race.dnfs||[]; race.dnfs.push(name.trim()); saveState(); render(); }
+      };
+    });
+  }, 0);
+}
+
+function renderSlots(parent, slots, race) {
+  slots.forEach((slot, globalIdx) => {
+    const row = el('div','slot-row');
+    const label = slot.pos !== undefined ? `${slot.pos||''}` : (slot.label || '');
+    const mgr = slot.rider ? getRiderManager(slot.rider) : null;
+
+    const posSpan = `<span class="slot-pos">${label}</span>`;
+    const ptsSpan = `<span class="slot-pts">${slot.pts||0} pt</span>`;
+
+    if (slot.rider) {
+      // Filled — show rider + click to navigate
+      row.innerHTML = `${posSpan}
+        <span class="slot-rider" style="cursor:pointer;text-decoration:underline dotted" data-rider="${slot.rider}" data-race="${race.name}">${slot.rider}
+          ${mgr?`<span class="badge" style="background:${COLORS[mgr]}22;color:${COLORS[mgr]};margin-left:4px">${mgr}</span>`:''}
+        </span>
+        ${ptsSpan}
+        <button class="btn" style="font-size:11px;padding:2px 8px;flex-shrink:0" data-clear-slot data-race="${race.name}" data-slot-type="${slot.pos!==undefined?'finals':'stages'}" data-slot-idx="${globalIdx}">✕</button>`;
+    } else {
+      // Empty — show input
+      const inp = el('input','slot-input');
+      inp.placeholder = 'Renner naam...';
+      inp.setAttribute('data-race', race.name);
+      inp.setAttribute('data-slot-type', slot.pos!==undefined?'finals':'stages');
+      inp.setAttribute('data-slot-idx', globalIdx);
+      inp.setAttribute('list', 'rider-names');
+      inp.value = '';
+
+      // Build row manually
+      const posEl = el('span','slot-pos'); posEl.textContent = label;
+      const ptsEl = el('span','slot-pts'); ptsEl.textContent = `${slot.pts||0} pt`;
+      row.appendChild(posEl);
+      row.appendChild(inp);
+      row.appendChild(ptsEl);
+    }
+
+    parent.appendChild(row);
+  });
+
+  // Wire after render
+  setTimeout(() => {
+    // Navigate on rider click
+    parent.querySelectorAll('[data-rider]').forEach(el => {
+      el.onclick = () => {
+        const rider = el.dataset.rider;
+        const mgr = getRiderManager(rider);
+        if (mgr) navigate('teams', {teamView: mgr, highlightRider: rider});
+      };
+    });
+
+    // Clear slot
+    parent.querySelectorAll('[data-clear-slot]').forEach(btn => {
+      btn.onclick = e => {
+        e.stopPropagation();
+        const raceName = btn.dataset.race;
+        const type = btn.dataset.slotType;
+        const idx = parseInt(btn.dataset.slotIdx);
+        const race = S.races.find(r => r.name === raceName);
+        if (race && race[type] && race[type][idx]) {
+          race[type][idx].rider = null;
+          saveState();
+          UI.raceOpen[raceName] = true;
+          render();
+        }
+      };
+    });
+
+    // Input save on Enter or blur
+    parent.querySelectorAll('input.slot-input').forEach(inp => {
+      const save = () => {
+        const val = inp.value.trim();
+        if (!val) return;
+        const raceName = inp.dataset.race;
+        const type = inp.dataset.slotType;
+        const idx = parseInt(inp.dataset.slotIdx);
+        const race = S.races.find(r => r.name === raceName);
+        if (race && race[type] && race[type][idx] !== undefined) {
+          race[type][idx].rider = val;
+          saveState();
+          UI.raceOpen[raceName] = true;
+          render();
+        }
+      };
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') save(); });
+      inp.addEventListener('blur', save);
+    });
+  }, 0);
 }
 
 // ---- FEED ----
 function renderFeed(c) {
-  // Compose
-  const compose = el("div","compose");
+  const compose = el('div','compose');
   compose.innerHTML = `
     <div style="font-size:13px;font-weight:500;margin-bottom:10px">Nieuw bericht</div>
-    <div style="display:flex;gap:8px;margin-bottom:8px">
+    <div class="compose-row">
       <select id="feed-who" style="flex:1;padding:7px 10px">
-        <option value="">Kies je naam...</option>
-        ${MANAGERS.map(m=>`<option value="${m}">${m}</option>`).join("")}
+        <option value="">Kies naam...</option>
+        ${MANAGERS.map(m=>`<option value="${m}">${m}</option>`).join('')}
       </select>
     </div>
-    <textarea id="feed-text" placeholder="Schrijf een bericht..." style="width:100%;padding:8px 10px;margin-bottom:8px;font-size:14px"></textarea>
+    <textarea id="feed-text" style="width:100%;padding:8px 10px;margin-bottom:8px;font-size:14px;min-height:70px;border-radius:var(--r);resize:vertical" placeholder="Schrijf een bericht..."></textarea>
     <button class="btn primary" id="feed-post">Versturen</button>`;
   c.appendChild(compose);
 
+  if (S.comments.length === 0) {
+    const empty = el('div','empty');
+    empty.innerHTML = '<div class="icon">💬</div><div>Nog geen berichten.</div>';
+    c.appendChild(empty);
+  } else {
+    S.comments.forEach(msg => {
+      const d = el('div','feed-msg');
+      d.innerHTML = `
+        <div class="feed-who"><span style="color:${COLORS[msg.who]||'var(--t1)'}">${msg.who}</span><span class="feed-when">${msg.time}</span></div>
+        <div class="feed-text">${msg.text.replace(/</g,'&lt;')}</div>`;
+      c.appendChild(d);
+    });
+  }
+
   setTimeout(() => {
-    document.getElementById("feed-post").onclick = () => {
-      const who = document.getElementById("feed-who").value;
-      const text = document.getElementById("feed-text").value.trim();
-      if (!who || !text) { alert("Kies een naam en schrijf een bericht."); return; }
-      state.comments.unshift({ who, text, time: new Date().toLocaleString("nl-NL") });
+    document.getElementById('feed-post').onclick = () => {
+      const who = document.getElementById('feed-who').value;
+      const text = document.getElementById('feed-text').value.trim();
+      if (!who || !text) { alert('Kies een naam en schrijf een bericht.'); return; }
+      S.comments.unshift({ who, text, time: new Date().toLocaleString('nl-NL') });
       saveState();
       render();
     };
-  },0);
-
-  if (state.comments.length === 0) {
-    const empty = el("div","empty-state");
-    empty.innerHTML = `<div style="font-size:24px;margin-bottom:8px">💬</div><div>Nog geen berichten. Wees de eerste!</div>`;
-    c.appendChild(empty);
-    return;
-  }
-
-  state.comments.forEach(msg => {
-    const d = el("div","feed-msg");
-    d.innerHTML = `
-      <div class="who" style="color:${COLORS[msg.who]||"var(--t1)"}">
-        ${msg.who}<span class="when">${msg.time}</span>
-      </div>
-      <div class="text">${msg.text.replace(/\n/g,"<br>")}</div>`;
-    c.appendChild(d);
-  });
+  }, 0);
 }
 
 // ---- ADMIN ----
 function renderAdmin(c) {
-  const info = el("div","");
-  info.innerHTML = `<div style="font-size:13px;color:var(--t2);margin-bottom:16px">Voeg race-uitslagen toe of bewerk bestaande. Wijzigingen worden direct zichtbaar in alle tabs.</div>`;
-  c.appendChild(info);
+  c.innerHTML = `<div style="font-size:13px;color:var(--t2);margin-bottom:16px">Pas team-afkortingen en kleuren aan, of reset alle data.</div>`;
 
-  const addBtn = el("button","btn primary");
-  addBtn.textContent = "+ Race toevoegen";
-  addBtn.onclick = () => { state.adminModal = "addRace"; state.editingRace = null; render(); };
-  addBtn.style.marginBottom = "16px";
-  c.appendChild(addBtn);
-
-  // List existing races
-  const wrap = el("div","");
-  wrap.style.cssText = "border:0.5px solid var(--border);border-radius:var(--rl);overflow:hidden";
-  const tbl = el("table","tbl");
-  tbl.innerHTML = `<thead><tr><th>Race</th><th>Type</th><th class="r">Renners</th><th class="r">Actie</th></tr></thead>`;
-  const tb = el("tbody","");
-  state.races.forEach((race, idx) => {
-    const all = [...(race.finals||[]),...(race.stages||[])];
-    const rCount = [...new Set(all.map(e=>e.rider).filter(Boolean))].length;
-    const tr = el("tr","");
-    tr.innerHTML = `
-      <td style="font-weight:500">${race.name}</td>
-      <td style="font-size:12px;color:var(--t2)">${race.type||""}</td>
-      <td class="r" style="font-size:12px;color:var(--t2)">${rCount}</td>
-      <td class="r">
-        <button class="btn" style="font-size:12px;padding:4px 10px" data-idx="${idx}">Bewerk</button>
-      </td>`;
-    tb.appendChild(tr);
+  const teamSection = el('div','card');
+  teamSection.innerHTML = `<div style="font-weight:500;margin-bottom:12px;font-size:14px">Teams bewerken</div>`;
+  const teamList = el('div','');
+  const usedTeams = [...new Set(RIDERS_INITIAL.map(r => getTeamForRider(r.name)))].sort();
+  usedTeams.forEach(team => {
+    const color = getTeamColor(team);
+    const abbr = getTeamAbbr(team);
+    const row = el('div','');
+    row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:6px 0;border-top:0.5px solid var(--border)';
+    row.innerHTML = `
+      <div style="width:28px;height:28px;border-radius:4px;background:${color};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">${abbr}</div>
+      <span style="flex:1;font-size:13px">${team}</span>
+      <button class="btn" style="font-size:12px;padding:4px 10px" data-edit-team="${team}">Bewerk</button>`;
+    teamList.appendChild(row);
   });
-  tbl.appendChild(tb);
-  wrap.appendChild(tbl);
-  c.appendChild(wrap);
+  teamSection.appendChild(teamList);
+  c.appendChild(teamSection);
+
+  const resetSection = el('div','card');
+  resetSection.style.marginTop = '12px';
+  resetSection.innerHTML = `
+    <div style="font-weight:500;margin-bottom:8px;font-size:14px">Data beheer</div>
+    <div style="font-size:13px;color:var(--t2);margin-bottom:12px">Reset alle ingevulde resultaten en keer terug naar de beginsituatie.</div>
+    <button class="btn danger" id="reset-btn">⚠️ Reset alle resultaten</button>`;
+  c.appendChild(resetSection);
 
   setTimeout(() => {
-    document.querySelectorAll("[data-idx]").forEach(btn => {
-      btn.onclick = () => {
-        const idx = parseInt(btn.dataset.idx);
-        state.editingRace = JSON.parse(JSON.stringify(state.races[idx]));
-        state.editingRace._idx = idx;
-        state.adminModal = "editRace";
-        render();
-      };
+    document.querySelectorAll('[data-edit-team]').forEach(btn => {
+      btn.onclick = () => { UI.modal='editTeam'; UI.modalData={team:btn.dataset.editTeam}; render(); };
     });
-  },0);
+    const resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) resetBtn.onclick = () => {
+      if (confirm('Weet je zeker dat je alle resultaten wilt wissen? Dit kan niet ongedaan worden gemaakt.')) {
+        localStorage.removeItem('wv26_state');
+        S = loadState();
+        render();
+      }
+    };
+  }, 0);
 }
 
 // ---- MODAL ----
 function renderModal(app) {
-  const bg = el("div","modal-bg");
-  bg.onclick = e => { if(e.target===bg){state.adminModal=null;render();} };
-  const modal = el("div","modal");
+  const bg = el('div','modal-bg');
+  bg.onclick = e => { if(e.target===bg){UI.modal=null;render();} };
+  const modal = el('div','modal');
 
-  const isEdit = state.adminModal === "editRace";
-  const race = isEdit ? state.editingRace : {name:"",type:"1.UWT",finals:[],stages:[],dnfs:[]};
+  if (UI.modal === 'editTeam') {
+    const { team } = UI.modalData;
+    const color = getTeamColor(team);
+    const abbr = getTeamAbbr(team);
+    modal.innerHTML = `
+      <h2>Team bewerken</h2>
+      <div class="modal-sub">${team}</div>
+      <div class="form-row"><label>Afkorting (2-3 letters)</label><input id="m-abbr" value="${abbr}" maxlength="4" style="text-transform:uppercase"></div>
+      <div class="form-row"><label>Kleur</label><input type="color" id="m-color" value="${color}" style="width:100%;height:40px;padding:2px"></div>
+      <div class="form-row">
+        <label>Jersey afbeelding</label>
+        <input type="file" id="m-jersey" accept="image/*" style="padding:6px">
+        ${S.jerseyImages[team] ? `<div style="margin-top:6px"><img src="${S.jerseyImages[team]}" style="height:40px;border-radius:4px"> <button class="btn danger" style="font-size:11px;padding:2px 8px" id="remove-jersey">Verwijder</button></div>` : ''}
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" id="save-team">Opslaan</button>
+        <button class="btn" id="cancel-team">Annuleren</button>
+      </div>`;
 
-  modal.innerHTML = `<h2>${isEdit?"Race bewerken":"Race toevoegen"}</h2>`;
+    bg.appendChild(modal);
+    app.appendChild(bg);
 
-  // Name + type
-  const r1 = el("div","form-row");
-  r1.innerHTML = `<label>Race naam</label><input id="m-name" value="${race.name||""}" placeholder="bijv. Tour de France">`;
-  modal.appendChild(r1);
-  const r2 = el("div","form-row");
-  r2.innerHTML = `<label>Type</label>
-    <select id="m-type">
-      ${["GT1","GT2","1.UWT","2.UWT","1.Pro","2.Pro","1.1"].map(t=>`<option value="${t}"${race.type===t?" selected":""}>${t}</option>`).join("")}
-    </select>`;
-  modal.appendChild(r2);
-
-  // Finals
-  const r3 = el("div","form-row");
-  r3.innerHTML = `<label>Eindklassement (één per regel: positie,renner,punten)</label>
-    <textarea id="m-finals" style="font-size:12px;font-family:monospace">${(race.finals||[]).map(f=>`${f.pos},${f.rider},${f.pts}`).join("\n")}</textarea>`;
-  modal.appendChild(r3);
-
-  // Stages
-  const r4 = el("div","form-row");
-  r4.innerHTML = `<label>Etappes (één per regel: etappe,renner,punten)</label>
-    <textarea id="m-stages" style="font-size:12px;font-family:monospace">${(race.stages||[]).map(s=>`${s.stage},${s.rider},${s.pts}`).join("\n")}</textarea>`;
-  modal.appendChild(r4);
-
-  // DNFs
-  const r5 = el("div","form-row");
-  r5.innerHTML = `<label>DNFs (één renner per regel)</label>
-    <textarea id="m-dnfs" style="font-size:12px;font-family:monospace;min-height:60px">${(race.dnfs||[]).join("\n")}</textarea>`;
-  modal.appendChild(r5);
-
-  // Buttons
-  const btnRow = el("div","");
-  btnRow.style.cssText = "display:flex;gap:8px;margin-top:16px";
-
-  const saveBtn = el("button","btn primary");
-  saveBtn.textContent = isEdit ? "Opslaan" : "Toevoegen";
-  saveBtn.onclick = () => {
-    const name = document.getElementById("m-name").value.trim();
-    const type = document.getElementById("m-type").value;
-    if (!name) { alert("Vul een naam in."); return; }
-
-    const finals = document.getElementById("m-finals").value.trim().split("\n").filter(Boolean).map(l => {
-      const [pos,rider,...rest] = l.split(",");
-      return {pos:parseInt(pos), rider:rider?.trim(), pts:parseFloat(rest.join(","))};
-    }).filter(f=>f.rider);
-
-    const stages = document.getElementById("m-stages").value.trim().split("\n").filter(Boolean).map(l => {
-      const [stage,rider,...rest] = l.split(",");
-      return {stage:parseFloat(stage), rider:rider?.trim(), pts:parseFloat(rest.join(","))};
-    }).filter(s=>s.rider);
-
-    const dnfs = document.getElementById("m-dnfs").value.trim().split("\n").filter(Boolean).map(s=>s.trim());
-
-    const newRace = {name, type, finals, stages, dnfs};
-
-    if (isEdit) {
-      state.races[race._idx] = newRace;
-    } else {
-      state.races.push(newRace);
-    }
-
-    // Recalculate rider points from all races
-    recalcRiderPoints();
-    saveState();
-    state.adminModal = null;
-    state.tab = "races";
-    render();
-  };
-  btnRow.appendChild(saveBtn);
-
-  const cancelBtn = el("button","btn");
-  cancelBtn.textContent = "Annuleren";
-  cancelBtn.onclick = () => { state.adminModal=null; render(); };
-  btnRow.appendChild(cancelBtn);
-
-  if (isEdit) {
-    const delBtn = el("button","btn");
-    delBtn.textContent = "Verwijderen";
-    delBtn.style.cssText = "margin-left:auto;color:#D85A30;border-color:#D85A30";
-    delBtn.onclick = () => {
-      if (confirm(`Race "${race.name}" verwijderen?`)) {
-        state.races.splice(race._idx, 1);
-        recalcRiderPoints();
-        saveState();
-        state.adminModal = null;
-        render();
-      }
-    };
-    btnRow.appendChild(delBtn);
+    setTimeout(() => {
+      document.getElementById('save-team').onclick = () => {
+        const abbr = document.getElementById('m-abbr').value.trim().toUpperCase().substring(0,4);
+        const color = document.getElementById('m-color').value;
+        if (abbr) S.teamAbbr[team] = abbr;
+        S.teamColors[team] = color;
+        const fileInput = document.getElementById('m-jersey');
+        if (fileInput.files[0]) {
+          const reader = new FileReader();
+          reader.onload = ev => { S.jerseyImages[team] = ev.target.result; saveState(); UI.modal=null; render(); };
+          reader.readAsDataURL(fileInput.files[0]);
+        } else { saveState(); UI.modal=null; render(); }
+      };
+      document.getElementById('cancel-team').onclick = () => { UI.modal=null; render(); };
+      const rj = document.getElementById('remove-jersey');
+      if (rj) rj.onclick = () => { delete S.jerseyImages[team]; saveState(); UI.modal=null; render(); };
+    }, 0);
+    return;
   }
 
-  modal.appendChild(btnRow);
   bg.appendChild(modal);
   app.appendChild(bg);
 }
 
-function recalcRiderPoints() {
-  // Reset all rider points to 0
-  state.riders.forEach(r => { r.points = 0; r.dnf = 0; r.dnfRaces = []; });
+// ---- DATALIST for autocomplete ----
+const dl = document.createElement('datalist');
+dl.id = 'rider-names';
+RIDERS_INITIAL.forEach(r => {
+  const opt = document.createElement('option');
+  opt.value = r.name;
+  dl.appendChild(opt);
+});
+document.body.appendChild(dl);
 
-  state.races.forEach(race => {
-    // Finals points
-    (race.finals||[]).forEach(f => {
-      if (!f.rider) return;
-      const r = findRider(f.rider);
-      if (r) r.points += f.pts;
-    });
-    // Stage points
-    (race.stages||[]).forEach(s => {
-      if (!s.rider) return;
-      const r = findRider(s.rider);
-      if (r) r.points += s.pts;
-    });
-    // Special points (Giro etc)
-    (race.special||[]).forEach(sp => {
-      if (!sp.rider) return;
-      const r = findRider(sp.rider);
-      if (r) r.points += sp.pts;
-    });
-    // DNFs
-    (race.dnfs||[]).forEach(name => {
-      const r = findRider(name);
-      if (r) { r.dnf = (r.dnf||0)+1; r.dnfRaces = r.dnfRaces||[]; r.dnfRaces.push(race.name); }
-    });
-  });
-
-  // Recalc costPerPoint
-  state.riders.forEach(r => {
-    r.costPerPoint = (r.points > 0 && r.cost > 0) ? Math.round(r.cost/r.points*100000) : null;
-  });
-}
-
-function findRider(name) {
-  name = name.trim();
-  let r = state.riders.find(rd => rd.name === name);
-  if (r) return r;
-  // fuzzy - first + last name match
-  const parts = name.toLowerCase().split(" ");
-  r = state.riders.find(rd => {
-    const p = rd.name.toLowerCase().split(" ");
-    return p[0] === parts[0] && p[p.length-1] === parts[parts.length-1];
-  });
-  return r || null;
-}
-
-function el(tag, cls) {
-  const e = document.createElement(tag);
-  if (cls) e.className = cls;
-  return e;
-}
-
-// Initial render
+// ---- INIT ----
 render();
 </script>
 </body>
